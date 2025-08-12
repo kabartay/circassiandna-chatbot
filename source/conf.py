@@ -1,10 +1,3 @@
-"""
-Sphinx configuration file for CircassianDNA Chatbot documentation.
-"""
-
-# pylint: skip-file
-# pylint: disable=invalid-name,redefined-builtin,missing-module-docstring
-
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -26,9 +19,10 @@ extensions = []
 templates_path = ["_templates"]
 exclude_patterns = []
 
+language = "English"
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "sphinx_rtd_theme"  # "alabaster"
+html_theme = "alabaster"
 html_static_path = ["_static"]
