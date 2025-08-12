@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "circassiandna-chatbot"
+version = "1.0.0"
+description = "CircassianDNA Chatbot"
+authors = [{name = "Mukharbek Organokov"}]
+readme = "README.md"
+license = "GPL-3.0"
+requires-python = ">=3.11"
+dependencies = [
+    "black==24.4.2",
+    "isort==5.13.2",
+    "pylint==3.2.6",
+    "pre-commit==4.3.0",
+    "pytest==8.4.0",
+    "flask==3.1.1",
+    "openai==1.99.5",
+    "pinecone==7.3.0",
+    "pinecone-client==6.0.0",
+    "awsgi==0.0.5",
+    "awslambdaric==3.1.1",
+    "typing-extensions>=4.10.0",
+    "Sphinx==8.2.0",
+    "sphinx-rtd-theme==3.0.2",
+    ]
+
+[tool.setuptools.packages.find]
+include = ["circassiandna_chatbot"]
+exclude = ["static", "templates"]

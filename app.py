@@ -50,7 +50,7 @@ PINECONE_NAMESPACE: Optional[str] = os.environ.get("PINECONE_NAMESPACE")
 MODEL = "gpt-4o-mini"
 TOP_N = 3  # for model
 BATCH_SIZE = 50  # for indexes
-PORT = 5000
+PORT = 8080
 
 
 if not OPENAI_API_KEY:
@@ -379,54 +379,6 @@ def chat():
                     response_data = {"answer": answer}
 
     return jsonify(response_data), status_code
-
-    # try:
-    #     data = request.json or {}
-    # except Exception as err:
-    #     LOGGER.exception("Invalid JSON in request. %s", err)
-    #     return error_response("Invalid JSON payload", 400)
-
-    # question = data.get("question", "")
-    # if not question:
-    #     return error_response("No question provided", 400)
-
-    # try:
-    #     contexts = retrieve_context(question)
-    # except PineconeException as err:
-    #     LOGGER.exception("Pinecone query failed.")
-    #     return error_response(f"Pinecone error: {str(err)}", 500)
-    # except Exception as err:
-    #     LOGGER.exception("Unexpected error during context retrieval.")
-    #     return error_response(f"Context retrieval error: {str(err)}", 500)
-
-    # LOGGER.info("Pinecone results: %s", contexts)
-    # combined_context = "\n\n".join(
-    #     [f"Q: {c['q']}\nA: {c['a']}" for c in contexts]
-    # )
-
-    # # Construct prompt for OpenAI
-    # prompt = (
-    #     "You are a helpful assistant for Circassian DNA.\n"
-    #     "Use knowledge base entries to answer the question.\n\n"
-    #     f"Knowledge base: {combined_context}\n\n"
-    #     f"Question: {question}\n"
-    #     "Answer:"
-    # )
-
-    # try:
-    #     completion = client.chat.completions.create(
-    #         model=MODEL, messages=[{"role": "user", "content": prompt}]
-    #     )
-
-    #     answer = completion.choices[0].message.content
-    # except OpenAIError as err:
-    #     LOGGER.exception("OpenAI API request failed.")
-    #     return error_response(f"OpenAI API error: {str(err)}", 500)
-    # except Exception as err:
-    #     LOGGER.exception("Unexpected error during OpenAI request.")
-    #     return error_response(f"Answer generation error: {str(err)}", 500)
-
-    # return jsonify({"answer": answer})
 
 
 # -------------------
