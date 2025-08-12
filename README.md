@@ -126,3 +126,14 @@ Add this script to your website HTML:
     });
     </script>
     ```
+
+## Documentation
+
+See here (in progress): <https://kabartay.github.io/circassiandna-chatbot/>
+
+Corresponding GitHub Actions workflow: `deploy-docs.yml`.  
+To test docs build manually use this:
+```bash
+sphinx-build -b html docs/source docs/build
+python3 -m http.server --directory docs/build
+```
