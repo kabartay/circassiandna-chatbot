@@ -22,7 +22,8 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Union
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, Response, jsonify, render_template, request
+from flask_cors import CORS
 from openai import OpenAI, OpenAIError
 from pinecone import Pinecone  # ServerlessSpec
 from pinecone.exceptions import PineconeException
@@ -254,6 +255,23 @@ def query_index(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
 # -------------------
 app = Flask(__name__)
 
+# CORS(app)
+# CORS(app, origins=["https://circassiandna.com"])
+CORS(
+    app,
+    resources={
+        r"/api/*": {
+            "origins": [
+                "https://www.circassiandna.com",
+                "https://circassiandna.com",
+                "http://localhost:5000",
+                "http://localhost:8000",
+                "http://localhost:8080",
+            ]
+        }
+    },
+)
+
 
 def retrieve_context(
     question: str, top_n: int = TOP_N
@@ -279,6 +297,25 @@ def retrieve_context(
     except Exception as err:
         LOGGER.exception("Unexpected error during context retrieval. %s", err)
         return []
+
+
+@app.route("/api/chat", methods=["OPTIONS"])
+def options() -> Response:
+    """
+    Handle the CORS preflight OPTIONS request for the /api/chat endpoint.
+    :return: A Flask response object with appropriate CORS headers to
+    allow POST requests from any origin, not only www.circassiandna.com.
+    """
+    try:
+        response: Response = app.make_default_options_response()
+        # Construct headers
+        headers = response.headers
+        headers["Access-Control-Allow-Origin"] = "*"
+        headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+        headers["Access-Control-Allow-Headers"] = "Content-Type"
+        return response
+    except Exception as err:
+        raise RuntimeError(f"Failed to handle OPTIONS request: {err}") from err
 
 
 @app.route("/")

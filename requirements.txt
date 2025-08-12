@@ -5,6 +5,7 @@ pre-commit==4.3.0
 pytest==8.4.0
 gunicorn==23.0.0
 flask==3.1.1
+flask-cors==6.0.0
 openai==1.99.5
 pinecone==7.3.0
 pinecone-client==6.0.0
