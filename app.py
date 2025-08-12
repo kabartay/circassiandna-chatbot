@@ -50,7 +50,7 @@ PINECONE_NAMESPACE: Optional[str] = os.environ.get("PINECONE_NAMESPACE")
 MODEL = "gpt-4o-mini"
 TOP_N = 3  # for model
 BATCH_SIZE = 50  # for indexes
-PORT = 5000
+PORT = 8080
 
 
 if not OPENAI_API_KEY:
