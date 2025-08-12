@@ -1,11 +1,19 @@
-FROM public.ecr.aws/lambda/python:3.11
+# FROM public.ecr.aws/lambda/python:3.11
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
 
 # Copy app files
-COPY app.py lambda_handler.py knowledgebase.json requirements.txt ./
+COPY app.py utils.py lambda_handler.py ./
+COPY knowledgebase.json ./
+COPY requirements.txt ./
 COPY templates ./templates
 COPY static ./static
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["lambda_handler.handler"]
+# Start Flask app with gunicorn
+# CMD ["lambda_handler.handler"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8080"]
