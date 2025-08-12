@@ -43,6 +43,8 @@ PINECONE_ENVIRONMENT: Optional[str] = os.environ.get("PINECONE_ENVIRONMENT")
 PINECONE_CLOUD: Optional[str] = os.environ.get("PINECONE_CLOUD")
 PINECONE_REGION: Optional[str] = os.environ.get("PINECONE_REGION")
 PINECONE_NAMESPACE: Optional[str] = os.environ.get("PINECONE_NAMESPACE")
+PORT_STR: Optional[str] = os.environ.get("PORT")
+PORT: int = int(PORT_STR) if PORT_STR is not None else 8080
 
 # -------------------
 # Config
@@ -50,7 +52,6 @@ PINECONE_NAMESPACE: Optional[str] = os.environ.get("PINECONE_NAMESPACE")
 MODEL = "gpt-4o-mini"
 TOP_N = 3  # for model
 BATCH_SIZE = 50  # for indexes
-PORT = 8080
 
 
 if not OPENAI_API_KEY:
