@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Circassian DNA Chatbot</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Circassian DNA Chatbot</h1>
+    <div id="chat-box"></div>
+    <input type="text" id="question" placeholder="Ask a DNA question...">
+    <button onclick="askQuestion()">Send</button>
+
+    <script>
+        async function askQuestion() {
+            const question = document.getElementById("question").value;
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question })
+            });
+            const data = await response.json();
+            document.getElementById("chat-box").innerHTML =
+                "<p><b>You:</b> " + question + "</p>" +
+                "<p><b>Bot:</b> " + data.answer + "</p>";
+        }
+    </script>
+</body>
+
+</html>

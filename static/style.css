@@ -1,0 +1,10 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+#chat-box {
+    background: #f4f4f4;
+    padding: 15px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,20 @@
+service: circassiandna-chat
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  environment:
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+    PINECONE_API_KEY: ${env:PINECONE_API_KEY}
+    PINECONE_ENV: ${env:PINECONE_ENV}
+    PINECONE_INDEX: circassiandna-knowledgebase
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+      Resource: '*'
+
+functions:
+  web:
+    handler: lambda_handler

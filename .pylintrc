@@ -1,0 +1,21 @@
+[MASTER]
+# Directories or files to be ignored by pylint
+ignore=venv
+
+# Additional directories to ignore if needed
+ignore-patterns=__init__.py
+
+# Files or directories matching these patterns will be skipped
+ignore-paths=venv/*
+
+[MESSAGES CONTROL]
+# Disable specific messages, e.g., the parse error for missing files
+disable=F0010,import-error,redefined-outer-name,too-few-public-methods,broad-exception-caught
+
+[FORMAT]
+# Match your black config for line length
+max-line-length=79
+
+[REPORTS]
+# Disable the full report to keep output cleaner
+reports=no

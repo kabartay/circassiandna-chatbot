@@ -1,0 +1,18 @@
+repos:
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        args: ["--line-length=79", "--extend-exclude=venv/*"]
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        args: ["--profile=black", "--line-length=79"]
+
+  - repo: https://github.com/pycqa/pylint
+    rev: v3.2.6
+    hooks:
+      - id: pylint
+        args: ["--ignore=venv"]
