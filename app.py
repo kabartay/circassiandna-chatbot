@@ -22,7 +22,7 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Union
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_cors import CORS
 from openai import OpenAI, OpenAIError
 from pinecone import Pinecone  # ServerlessSpec
@@ -253,7 +253,7 @@ def query_index(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
 # -------------------
 # Flask App
 # -------------------
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates")
 
 # CORS(app)
 # CORS(app, origins=["https://circassiandna.com"])
@@ -274,6 +274,9 @@ CORS(
 )
 
 
+# -------------------
+# Context Retrieval
+# -------------------
 def retrieve_context(
     question: str, top_n: int = TOP_N
 ) -> List[Dict[str, Any]]:
@@ -300,26 +303,25 @@ def retrieve_context(
         return []
 
 
-# Standalone CORS preflight handler for OPTIONS requests, disabled for now
-# @app.route("/api/chat", methods=["OPTIONS"])
-# def options() -> Response:
-#     """
-#     Handle the CORS preflight OPTIONS request for the /api/chat endpoint.
-#     :return: A Flask response object with appropriate CORS headers to
-#     allow POST requests from any origin, not only www.circassiandna.com.
-#     """
-#     try:
-#         response: Response = app.make_default_options_response()
-#         # Construct headers
-#         headers = response.headers
-#         headers["Access-Control-Allow-Origin"] = "*"
-#         headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-#         headers["Access-Control-Allow-Headers"] = "Content-Type"
-#         return response
-#     except Exception as err:
-# raise RuntimeError(f"Failed to handle OPTIONS request: {err}") from err
+# -------------------
+# Serve Static Files
+# -------------------
+@app.route("/static/<path:filename>")
+def serve_static(filename):
+    """
+    Serve static files from the 'static' directory.
+    Ensures that requests like /static/chat-widget.js will work under Gunicorn
+    in Docker since Flask doesn't serve static files unless a route to them is
+    explicitely added. By default, Flask can serve static files in debug mode.
+    :param filename: The relative path of the file within the 'static' folder.
+    :return: Flask response containing the requested static file.
+    """
+    return send_from_directory(os.path.join(app.root_path, "static"), filename)
 
 
+# -------------------
+# Main UI
+# -------------------
 @app.route("/")
 def index() -> str:
     """
@@ -329,6 +331,9 @@ def index() -> str:
     return render_template("index.html")
 
 
+# -------------------
+# Chat API Endpoint
+# -------------------
 @app.route("/api/chat", methods=["POST", "OPTIONS"])
 def chat():
     """
