@@ -19,7 +19,7 @@ window.ChatWidget = {
         const input = container.querySelector("#userInput");
         const button = container.querySelector("#sendBtn");
 
-        button.onclick = async function () {
+        const sendMessage = async () => {
             const message = input.value.trim();
             if (!message) return;
             chatlog.innerHTML += `<div><b>You:</b> ${message}</div>`;
@@ -40,5 +40,16 @@ window.ChatWidget = {
                 console.error(err);
             }
         };
+
+        // Button click
+        button.onclick = sendMessage;
+
+        // Press Enter key
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
     }
 };

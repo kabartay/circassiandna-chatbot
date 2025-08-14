@@ -20,9 +20,16 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import json
 import os
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
-from flask import Flask, jsonify, render_template, request, send_from_directory
+from flask import (
+    Flask,
+    Response,
+    jsonify,
+    render_template,
+    request,
+    send_from_directory,
+)
 from flask_cors import CORS
 from openai import OpenAI, OpenAIError
 from pinecone import Pinecone  # ServerlessSpec
@@ -35,17 +42,18 @@ LOGGER = get_module_logger(__name__)
 # -------------------
 # Environment
 # -------------------
+KB = "circassiandna-knowledgebase"
 OPENAI_API_KEY: Optional[str] = os.environ.get("OPENAI_API_KEY")
 PINECONE_API_KEY: Optional[str] = os.environ.get("PINECONE_API_KEY")
-PINECONE_INDEX: str = os.environ.get(
-    "PINECONE_INDEX", "circassiandna-knowledgebase"
-)
+PINECONE_INDEX: str = os.environ.get("PINECONE_INDEX", KB)
 PINECONE_ENVIRONMENT: Optional[str] = os.environ.get("PINECONE_ENVIRONMENT")
 PINECONE_CLOUD: Optional[str] = os.environ.get("PINECONE_CLOUD")
 PINECONE_REGION: Optional[str] = os.environ.get("PINECONE_REGION")
 PINECONE_NAMESPACE: Optional[str] = os.environ.get("PINECONE_NAMESPACE")
 PORT_STR: Optional[str] = os.environ.get("PORT")
 PORT: int = int(PORT_STR) if PORT_STR is not None else 8080
+
+LOGGER.info("Starting app on port %d", PORT)
 
 # -------------------
 # Config
@@ -56,9 +64,11 @@ BATCH_SIZE = 50  # for indexes
 
 
 if not OPENAI_API_KEY:
+    LOGGER.critical("OPENAI_API_KEY is missing!")
     raise RuntimeError("OPENAI_API_KEY is required")
 
 client = OpenAI(api_key=OPENAI_API_KEY)
+LOGGER.info("OpenAI client initialized.")
 
 
 # -------------------
@@ -67,7 +77,9 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 try:
     with open("knowledgebase.json", "r", encoding="utf-8") as f:
         KNOWLEDGEBASE: Dict[str, str] = json.load(f)
+    LOGGER.info("Knowledge base loaded: %d entries", len(KNOWLEDGEBASE))
 except (OSError, json.JSONDecodeError) as err:
+    LOGGER.critical("Failed to load knowledgebase.json: %s", err)
     raise RuntimeError(f"Failed to load knowledgebase.json: {err}") from err
 
 
@@ -85,6 +97,7 @@ def embed_text(text: str) -> List[float]:
     try:
         model = "text-embedding-3-small"
         response = client.embeddings.create(model=model, input=text)
+        LOGGER.debug("Embedding generated for text of length %d", len(text))
         return response.data[0].embedding
     except OpenAIError as err:
         LOGGER.error(
@@ -114,7 +127,9 @@ def build_index(pc, index_name: str = PINECONE_INDEX) -> None:
         LOGGER.info("Current Pinecone indexes: %s", indexes)
 
         if index_name not in indexes:
+            LOGGER.info("Creating Pinecone index: %s", index_name)
             if not PINECONE_CLOUD or not PINECONE_REGION:
+                LOGGER.error("PINECONE_CLOUD or PINECONE_REGION missing!")
                 raise RuntimeError(
                     "PINECONE_CLOUD and PINECONE_REGION are not found."
                 )
@@ -180,6 +195,7 @@ def query_index(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
         - entry text;
         - similarity score (1.0 for keyword matches).
     """
+    LOGGER.debug("Query received: %s (top_k=%d)", query, top_k)
     if top_k < 1:
         raise ValueError("top_k must be >= 1")
 
@@ -195,12 +211,14 @@ def query_index(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
         for k, v in KNOWLEDGEBASE.items():
             if query.lower() in k.lower() or query.lower() in v.lower():
                 results.append({"title": k, "text": v, "score": 1.0})
+        LOGGER.debug("Fallback search found %d results", len(results))
         return results[:top_k]
 
     try:
         if not PINECONE_API_KEY:
-            LOGGER.warning("PINECONE_API_KEY not set.")
-            LOGGER.warning("Using fallback KB search.")
+            LOGGER.warning(
+                "PINECONE_API_KEY not set. Using fallback KB search."
+            )
             return _fallback_search()
 
         # Initialize Pinecone client
@@ -209,8 +227,10 @@ def query_index(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
         )
 
         if PINECONE_INDEX not in pc.list_indexes().names():
-            LOGGER.warning("Pinecone index not found: %s.", PINECONE_INDEX)
-            LOGGER.warning("Using fallback KB search.")
+            LOGGER.warning(
+                "Pinecone index not found: %s. Using fallback KB search",
+                PINECONE_INDEX,
+            )
             return _fallback_search()
 
         idx = pc.Index(PINECONE_INDEX)
@@ -239,7 +259,7 @@ def query_index(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
             }
             for match in results.matches
         ]
-
+        LOGGER.debug("Pinecone query returned %d matches", len(data))
         return data
     except PineconeException as err:
         LOGGER.error("Pinecone query failed: %s", err)
@@ -273,6 +293,8 @@ CORS(
     # supports_credentials=True
 )
 
+LOGGER.info("Flask app initialized.")
+
 
 # -------------------
 # Context Retrieval
@@ -289,8 +311,10 @@ def retrieve_context(
         (a) The corresponding answer/text.
         (score) Relevance score from Pinecone, if available.
     """
+    LOGGER.debug("Retrieving context for question: %s", question)
     try:
         hits = query_index(question, top_k=top_n)
+        LOGGER.info("Context retrieval found %d hits", len(hits))
         return [
             {"q": h["title"], "a": h["text"], "score": h.get("score")}
             for h in hits
@@ -307,7 +331,7 @@ def retrieve_context(
 # Serve Static Files
 # -------------------
 @app.route("/static/<path:filename>")
-def serve_static(filename):
+def serve_static(filename) -> Response:
     """
     Serve static files from the 'static' directory.
     Ensures that requests like /static/chat-widget.js will work under Gunicorn
@@ -316,6 +340,7 @@ def serve_static(filename):
     :param filename: The relative path of the file within the 'static' folder.
     :return: Flask response containing the requested static file.
     """
+    LOGGER.debug("Serving static file: %s", filename)
     return send_from_directory(os.path.join(app.root_path, "static"), filename)
 
 
@@ -328,14 +353,28 @@ def index() -> str:
     Render the main chatbot UI page.
     :return: Rendered HTML for the chatbot interface.
     """
+    LOGGER.info("Main UI requested")
     return render_template("index.html")
+
+
+# -------------------
+# Heatlh Check
+# -------------------
+@app.route("/healthz")
+def healthz() -> Tuple[str, int]:
+    """
+    Health check endpoint to verify server status.
+    :return: A tuple containing a status message and HTTP status code.
+    """
+    LOGGER.debug("Health check requested")
+    return "OK", 200
 
 
 # -------------------
 # Chat API Endpoint
 # -------------------
 @app.route("/api/chat", methods=["POST", "OPTIONS"])
-def chat():
+def chat() -> Response:
     """
     Handle chat requests from the client.
 
@@ -356,12 +395,16 @@ def chat():
         }
     :return: Flask response as JSON with generated answer or an error msg.
     """
+    LOGGER.info("Chat API.")
     if request.method == "OPTIONS":
         # This is the preflight request
         return "", 204
 
-    def error_response(message: str, status_code: int):
+    def error_response(
+        message: str, status_code: int
+    ) -> Tuple[Dict[str, str], int]:
         """Helper to format error responses consistently."""
+        LOGGER.warning("Error response: %s", message)
         return {"error": message}, status_code
 
     response_data = None
@@ -369,6 +412,7 @@ def chat():
 
     try:
         data = request.json or {}
+        LOGGER.debug("Received request data: %s", data)
     except Exception as err:
         LOGGER.exception("Invalid JSON in request. %s", err)
         response_data, status_code = error_response(
@@ -383,6 +427,7 @@ def chat():
         else:
             try:
                 contexts = retrieve_context(question)
+                LOGGER.info("Contexts retrieved: %s", contexts)
             except PineconeException as err:
                 LOGGER.exception("Pinecone query failed.")
                 response_data, status_code = error_response(

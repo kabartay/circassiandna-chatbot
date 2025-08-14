@@ -2,7 +2,7 @@
 
 A chatbot for Circassian DNA Project.
 
-- Copyright (C) 2025 Your Name
+- Copyright (C) 2025 Mukharbek Organokov
 - Website: <www.circassiandna.com>
 - License: GNU General Public License v3.0
 
@@ -28,11 +28,11 @@ The chatbot runs locally and can be deployed on AWS Lambda with Serverless Frame
 - `app.py`: Flask backend API includes Embeddings + Pinecone retrieval.
 - `lambda_handler.py`: AWS Lambda handler.
 - `knowledgebase.json`: Knowledge base FAQ.
-- `serverless.yml`: Serverless Framework deployment config.
 - `template.yaml`: AWS SAM deployment config.
+- `templates/index.html`: simple web UI for local testing.
 - `static/chat-widget.js`: embeddable JS widget.
 - `static/style.css`: CSS styling.
-- `templates/index.html`: simple web UI for local testing.
+- `serverless.yml`: Serverless Framework deployment config.
 
 ## Features
 
@@ -114,46 +114,40 @@ The chatbot runs locally and can be deployed on AWS Lambda with Serverless Frame
     Make sure to set environment variables in the deployment config.
 
 7. Web Widget Integration  
-Add this script to your website HTML:
+    7a. Add this script to your website page as HTML:
 
     ```html
-    <div id="chatbot">
-    <div id="chatlog" style="border:1px solid #ccc; height:200px; overflow:auto; padding:10px;"></div>
-    <input type="text" id="userInput" placeholder="Ask me something..." style="width:80%;">
-    <button onclick="sendMessage()">Send</button>
-    </div>
-
+    <script src="https://circassiandna-chatbot.onrender.com/static/chat-widget.js"></script>
+    <div id="chatbot"></div>
     <script>
-    async function sendMessage() {
-    console.log("sendMessage called");
-    const input = document.getElementById('userInput');
-    const message = input.value.trim();
-    console.log("User message:", message);
-    if (!message) return;
-
-    const chatlog = document.getElementById('chatlog');
-    chatlog.innerHTML += `<div><b>You:</b> ${message}</div>`;
-    input.value = '';
-
-    try {
-        const response = await fetch('https://circassiandna-chatbot.onrender.com/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: message }),
+    window.onload = function() {
+        ChatWidget.init({
+            apiUrl: 'https://circassiandna-chatbot.onrender.com/api/chat',
+            containerId: 'chatbot',
         });
-        if (!response.ok) throw new Error('Network error');
-
-        const data = await response.json();
-        console.log("Bot response:", data.answer);
-        chatlog.innerHTML += `<div><b>Bot:</b> ${data.answer}</div>`;
-        chatlog.scrollTop = chatlog.scrollHeight;
-    } catch (error) {
-        console.error("Fetch error:", error);
-        chatlog.innerHTML += `<div><b>Bot:</b> Sorry, error occurred.</div>`;
-    }
-    }
+    };
     </script>
     ```
+
+    Since you have chat-widget.js in your static, it refers to it.
+
+    7b. Add the custom snippet plugin (to your website theme) instead in case
+    of a global option, i.e. load a chatbot on every page in the footer: `chatbot-widget-global-web.php`
+
+## Docker build
+
+```bash
+docker build -t circassian-chatbot .
+```
+
+```bash
+docker run --env-file .env -p 8080:8080 circassian-chatbot
+```
+
+Ensure you have `.env` with all variables needed.  
+Open `http://localhost:8080/` in your browser and test.  
+Check that static are there (widgets and styles):  
+`http://localhost:8080/static/chat-widget.js`
 
 ## Documentation
 
