@@ -117,13 +117,41 @@ The chatbot runs locally and can be deployed on AWS Lambda with Serverless Frame
 Add this script to your website HTML:
 
     ```html
-    <script src="https://your-api-url/static/chat-widget.js"></script>
-    <div id="chatbot"></div>
+    <div id="chatbot">
+    <div id="chatlog" style="border:1px solid #ccc; height:200px; overflow:auto; padding:10px;"></div>
+    <input type="text" id="userInput" placeholder="Ask me something..." style="width:80%;">
+    <button onclick="sendMessage()">Send</button>
+    </div>
+
     <script>
-    ChatWidget.init({
-        apiUrl: 'https://your-api-url/api/chat',
-        containerId: 'chatbot',
-    });
+    async function sendMessage() {
+    console.log("sendMessage called");
+    const input = document.getElementById('userInput');
+    const message = input.value.trim();
+    console.log("User message:", message);
+    if (!message) return;
+
+    const chatlog = document.getElementById('chatlog');
+    chatlog.innerHTML += `<div><b>You:</b> ${message}</div>`;
+    input.value = '';
+
+    try {
+        const response = await fetch('https://circassiandna-chatbot.onrender.com/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: message }),
+        });
+        if (!response.ok) throw new Error('Network error');
+
+        const data = await response.json();
+        console.log("Bot response:", data.answer);
+        chatlog.innerHTML += `<div><b>Bot:</b> ${data.answer}</div>`;
+        chatlog.scrollTop = chatlog.scrollHeight;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        chatlog.innerHTML += `<div><b>Bot:</b> Sorry, error occurred.</div>`;
+    }
+    }
     </script>
     ```
 
@@ -133,6 +161,7 @@ See here (in progress): <https://kabartay.github.io/circassiandna-chatbot/>
 
 Corresponding GitHub Actions workflow: `deploy-docs.yml`.  
 To test docs build manually use this:
+
 ```bash
 sphinx-build -b html docs/source docs/build
 python3 -m http.server --directory docs/build

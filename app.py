@@ -22,7 +22,7 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Union
 
-from flask import Flask, Response, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 from openai import OpenAI, OpenAIError
 from pinecone import Pinecone  # ServerlessSpec
@@ -270,6 +270,7 @@ CORS(
             ]
         }
     },
+    # supports_credentials=True
 )
 
 
@@ -299,23 +300,24 @@ def retrieve_context(
         return []
 
 
-@app.route("/api/chat", methods=["OPTIONS"])
-def options() -> Response:
-    """
-    Handle the CORS preflight OPTIONS request for the /api/chat endpoint.
-    :return: A Flask response object with appropriate CORS headers to
-    allow POST requests from any origin, not only www.circassiandna.com.
-    """
-    try:
-        response: Response = app.make_default_options_response()
-        # Construct headers
-        headers = response.headers
-        headers["Access-Control-Allow-Origin"] = "*"
-        headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
-        headers["Access-Control-Allow-Headers"] = "Content-Type"
-        return response
-    except Exception as err:
-        raise RuntimeError(f"Failed to handle OPTIONS request: {err}") from err
+# Standalone CORS preflight handler for OPTIONS requests, disabled for now
+# @app.route("/api/chat", methods=["OPTIONS"])
+# def options() -> Response:
+#     """
+#     Handle the CORS preflight OPTIONS request for the /api/chat endpoint.
+#     :return: A Flask response object with appropriate CORS headers to
+#     allow POST requests from any origin, not only www.circassiandna.com.
+#     """
+#     try:
+#         response: Response = app.make_default_options_response()
+#         # Construct headers
+#         headers = response.headers
+#         headers["Access-Control-Allow-Origin"] = "*"
+#         headers["Access-Control-Allow-Methods"] = "POST, OPTIONS"
+#         headers["Access-Control-Allow-Headers"] = "Content-Type"
+#         return response
+#     except Exception as err:
+# raise RuntimeError(f"Failed to handle OPTIONS request: {err}") from err
 
 
 @app.route("/")
@@ -327,7 +329,7 @@ def index() -> str:
     return render_template("index.html")
 
 
-@app.route("/api/chat", methods=["POST"])
+@app.route("/api/chat", methods=["POST", "OPTIONS"])
 def chat():
     """
     Handle chat requests from the client.
@@ -349,6 +351,9 @@ def chat():
         }
     :return: Flask response as JSON with generated answer or an error msg.
     """
+    if request.method == "OPTIONS":
+        # This is the preflight request
+        return "", 204
 
     def error_response(message: str, status_code: int):
         """Helper to format error responses consistently."""
