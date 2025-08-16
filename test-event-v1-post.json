@@ -1,0 +1,29 @@
+{
+    "resource": "/api/chat",
+    "path": "/api/chat",
+    "httpMethod": "POST",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "multiValueHeaders": {
+        "Content-Type": [
+            "application/json"
+        ]
+    },
+    "queryStringParameters": {},
+    "multiValueQueryStringParameters": {},
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourcePath": "/api/chat",
+        "httpMethod": "POST",
+        "path": "/dev/api/chat",
+        "protocol": "HTTP/1.1",
+        "identity": {
+            "sourceIp": "127.0.0.1",
+            "userAgent": "curl/8.6.0"
+        }
+    },
+    "body": "{\"question\":\"Hello\"}",
+    "isBase64Encoded": false
+}

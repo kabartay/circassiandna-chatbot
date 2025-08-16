@@ -1,0 +1,29 @@
+{
+    "resource": "/",
+    "path": "/",
+    "httpMethod": "GET",
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "multiValueHeaders": {
+        "Content-Type": [
+            "application/json"
+        ]
+    },
+    "queryStringParameters": {},
+    "multiValueQueryStringParameters": {},
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourcePath": "/",
+        "httpMethod": "GET",
+        "path": "/dev/",
+        "protocol": "HTTP/1.1",
+        "identity": {
+            "sourceIp": "127.0.0.1",
+            "userAgent": "curl/8.6.0"
+        }
+    },
+    "body": null,
+    "isBase64Encoded": false
+}
