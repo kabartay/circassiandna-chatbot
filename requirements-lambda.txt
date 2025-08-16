@@ -1,0 +1,10 @@
+gunicorn==23.0.0
+flask==3.1.1
+flask-cors==6.0.0
+openai==1.99.5
+pinecone==7.3.0
+pinecone-client==6.0.0
+#awsgi2==1.0.2
+apig-wsgi==2.19.0
+awslambdaric==3.1.1
+typing-extensions>=4.10.0

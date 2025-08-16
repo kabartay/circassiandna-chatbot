@@ -1,0 +1,8 @@
+black==24.4.2
+isort==5.13.2
+pylint==3.2.6
+pre-commit==4.3.0
+pytest==8.4.0
+gunicorn==23.0.0
+Sphinx==8.2.0
+sphinx-rtd-theme==3.0.2

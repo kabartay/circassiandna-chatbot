@@ -161,3 +161,10 @@ cython_debug/
 
 # Creds
 creds.sh
+
+# Serverless builds
+.serverless/
+layer/
+node_modules/
+package-lock.json
+package.json
