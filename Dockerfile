@@ -7,7 +7,8 @@ WORKDIR /app
 # Copy app files
 COPY app.py utils.py lambda_handler.py ./
 COPY knowledgebase.json ./
-COPY requirements.txt ./
+COPY requirements-dev.txt ./
+COPY requirements-lambda.txt ./
 COPY templates ./templates
 COPY static ./static
 
