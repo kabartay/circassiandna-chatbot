@@ -168,3 +168,7 @@ layer/
 node_modules/
 package-lock.json
 package.json
+
+# macOS system files
+.DS_Store
+**/.DS_Store
