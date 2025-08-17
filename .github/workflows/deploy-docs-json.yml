@@ -1,0 +1,21 @@
+name: Deploy JSON to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "kb/**/*.json"
+
+jobs:
+  deploy-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy JSON to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./kb
+          destination_dir: kb

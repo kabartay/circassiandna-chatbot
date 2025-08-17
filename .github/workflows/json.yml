@@ -1,0 +1,43 @@
+name: JSON Validation
+
+on:
+  push:
+    paths:
+      - "kb/**/*.json"
+  pull_request:
+    paths:
+      - "kb/**/*.json"
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Validate JSON with jq
+        run: |
+          for file in $(find data -name "*.json"); do
+            echo "Checking $file"
+            jq empty "$file"
+          done
+
+      - name: Install jsonlint
+        run: npm install -g jsonlint
+
+      - name: Validate JSON with jsonlint
+        run: |
+          for file in $(find data -name "*.json"); do
+            echo "Linting $file"
+            jsonlint -q "$file"
+          done
+
+      - name: Install prettier
+        run: npm install -g prettier
+
+      - name: Format JSON
+        run: prettier --write "kb/**/*.json"
