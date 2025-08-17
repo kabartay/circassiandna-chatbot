@@ -13,23 +13,6 @@ This repository provides a chatbot answering questions about DNA testing, haplog
 
 ## Content
 
-    ├── README.md
-    ├── Dockerfile
-    ├── requirements.txt          # full dev & Docker
-    ├── requirements-lambda.txt   # minimal Lambda layer
-    ├── lambda_handler.py         # Lambda handler
-    ├── app.py                    # Flask App
-    ├── knowledgebase.json
-    ├── serverless.yml
-    └── static/
-        └── chat-widget.js
-        └── style.css
-    └── templates/
-        └── index.html
-    ├── serverless.yml
-    └── layer/
-        ├── python/
-
     ├── README.md                      # Project documentation, setup & usage instructions
     ├── Dockerfile                     # Docker image definition for local/dev/test deployment
     ├── requirements-dev.txt           # Full Python dependencies (dev + Docker environments)
@@ -56,18 +39,19 @@ This repository provides a chatbot answering questions about DNA testing, haplog
 - `templates/` → enable a quick demo UI (`index.html`) that talks to your Flask API.
 - `static/` → CSS styling (`style.css`) and JS widget (`chat-widget.js`).
 - `chatbot-widget-global-web.php` → optional plugin to drop chatbot into PHP websites (WordPress, etc.).
-- `layer/python/` → holds dependencies zipped into a Lambda Layer (requirements-lambda.txt gets installed here).
+- `layer/python/` → holds dependencies zipped into a Lambda Layer (`requirements-lambda.txt` here).
 
 All heavy dependencies (flask, awsgi, pinecone, etc.) are moved into `Lambda Layer` to avoid 250 Mb limit.
 
 ## Features
 
-- Flask API backend – A lightweight Flask application (`app.py`) exposing chatbot Q&A endpoints.
-- Smart retrieval with embeddings – Combines OpenAI embeddings and Pinecone vector search for context-aware answers.
-- Domain-focused knowledge base – Ships with a sample Circassian FAQ (`knowledgebase.json`) and can be extended with your own content.
-- Serverless deployment – Easily deployable to AWS Lambda + API Gateway via Serverless Framework or AWS SAM.
-- Embeddable chatbot widget – Plug-and-play JavaScript widget (`static/chat-widget.js`) to add the chatbot UI into any website.
-- Customizable UI – Basic HTML/CSS frontend (`templates/` + `static/`) for quick testing or integration.
+- Flask API backend – A lightweight **Flask** application (`app.py`) exposing chatbot Q&A endpoints.
+- Smart retrieval with embeddings – Combines **OpenAI** embeddings and **Pinecone** vector search for context-aware answers (DNA, Circassian ancestry).
+- Domain-focused knowledge base – Ships with a sample Circassian FAQ (`knowledgebase.json`) and can be extended with custom content.
+- Serverless deployment – Easily deployable to **AWS Lambda** + **API Gateway** via **Serverless Framework** or **AWS SAM**.
+- Embeddable chatbot widget – Plug-and-play **JavaScript** widget (`static/chat-widget.js`) to add the chatbot UI into any website.
+- A PHP code (`chatbot-widget-global-web.php`) to register a **wp_footer** hook in **WordPress** to automatically embed the Circassian DNA ChatBot on all site pages. It defines CSS styles, HTML markup, and JS logic. Drop this snippet into your **WordPress** theme’s `functions.php` or via a custom plugin. The chatbot will appear as a floating chat widget on every page.Powered by your deployed backend API (on **Render** or **AWS**).
+- Customizable UI – Basic **HTML/CSS** frontend (`templates/` + `static/`) for quick testing or integration.
 - Multi-environment setup – Separate `requirements-dev.txt` (dev/Docker) and `requirements-lambda.txt` (minimal Lambda layer) for optimized deployments.
 
 ## Getting Started
