@@ -23,13 +23,19 @@ This repository provides a chatbot answering questions about DNA testing, haplog
     ├── serverless.yml                 # Serverless Framework deployment config (API Gateway + Lambda + Layers)
     ├── template.yaml                  # AWS SAM alternative deployment config (if used)
     ├── static/                        # Frontend static assets (used by templates/index.html)
-    │   ├── chat-widget.js             # Embeddable JS chat widget for external websites
-    │   └── style.css                  # Styling chatbot for the widget and UI
+        ├── chat-widget.js             # Embeddable JS chat widget for external websites
+        └── style.css                  # Styling chatbot for the widget and UI
     ├── templates/                     # Flask Jinja2 templates
-    │   └── index.html                 # Simple local test UI for the chatbot
+        └── index.html                 # Simple local test UI for the chatbot
     ├── chatbot-widget-global-web.php  # PHP plugin wrapper to embed chatbot widget in websites
     └── layer/                         # AWS Lambda custom layer packaging
         └── python/                    # Site-packages placed here during layer build
+    └── tests/                         # Tests folder
+        ├── test_app.py                # Main file for Flask application tests
+        └── events/                    # Sample Lambda event payloads
+            ├── test-event-v1.json
+            ├── test-event-v1-post.json
+            └── test-event-v2.json
 
 - `app.py` → main logic: Flask routes, embeddings, Pinecone retrieval, logging.
 - `lambda_handler.py` → glue between Flask app and AWS Lambda (via API Gateway).
@@ -207,6 +213,45 @@ If an empty event ({}) passed to `awsgi2` as in example above, there’s no meth
 ```bash
 sam build
 sam deploy --guided
+```
+
+## API tests
+
+Once deployed, you can also test directly against your API Gateway endpoint.  
+Example cURL Requests:
+
+```bash
+# GET /
+curl -i https://<api-id>.execute-api.<region>.amazonaws.com/
+```
+
+```bash
+# POST /api/chat
+curl -X POST https://<api-id>.execute-api.<region>.amazonaws.com/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"question":"Hello"}'
+```
+
+### REST API v1
+
+Simulates a **GET** / request (API Gateway REST API v1).
+
+```bash
+serverless invoke local -f web --path test-event-v1.json
+```
+
+Simulates a **POST /api/chat** request (API Gateway REST API v1).
+
+```bash
+serverless invoke local -f web --path test-event-v1-post.json
+```
+
+### HTTP API v2
+
+Simulates a **POST /api/chat** request (API Gateway HTTP API v2).
+
+```bash
+serverless invoke local -f web --path test-event-v2.json
 ```
 
 ## Web Widget Integration  
