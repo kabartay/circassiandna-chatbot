@@ -3,10 +3,13 @@ name: JSON Validation
 on:
   push:
     paths:
-      - "kb/**/*.json"
+      - "kb/*.json"
   pull_request:
     paths:
-      - "kb/**/*.json"
+      - "kb/*.json"
+
+env:
+  JSON_DIR: kb
 
 jobs:
   validate-json:
@@ -15,29 +18,56 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
 
       - name: Install jq
         run: sudo apt-get install -y jq
 
       - name: Validate JSON with jq
         run: |
-          for file in $(find data -name "*.json"); do
+          for file in $(find $JSON_DIR -name "*.json" || true); do
             echo "Checking $file"
             jq empty "$file"
           done
 
-      - name: Install jsonlint
-        run: npm install -g jsonlint
+      - name: Setup Node.js for faster installs.
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install jsonlint and prettier
+        run: npm install -g jsonlint prettier
 
       - name: Validate JSON with jsonlint
         run: |
-          for file in $(find data -name "*.json"); do
+          for file in $(find $JSON_DIR -name "*.json"); do
             echo "Linting $file"
             jsonlint -q "$file"
           done
 
-      - name: Install prettier
-        run: npm install -g prettier
+      - name: Check JSON formatting
+        id: check
+        run: |
+          set +e
+          prettier --check "$JSON_DIR/**/*.json"
+          echo "CHECK_EXIT_CODE=$?" >> $GITHUB_ENV
+          set -e
 
-      - name: Format JSON
-        run: prettier --write "kb/**/*.json"
+      - name: Auto-format JSON if check failed
+        if: env.CHECK_EXIT_CODE != '0'
+        run: prettier --write "$JSON_DIR/**/*.json"
+
+      - name: Check JSON formatting again
+        if: env.CHECK_EXIT_CODE != '0'
+        run: prettier --check "$JSON_DIR/**/*.json"
+
+      - name: Commit formatted JSON if changes were made and not failed
+        env:
+          PAT: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add kb/*.json
+          git diff --quiet || git commit -m "Format JSON files with Prettier."
+          git push https://kabartay:${PAT}@github.com/kabartay/circassiandna-chatbot.git HEAD:deployment

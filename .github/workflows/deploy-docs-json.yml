@@ -2,9 +2,14 @@ name: Deploy JSON to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
+      - deployment
     paths:
-      - "kb/**/*.json"
+      - "kb/*.json"
+
+env:
+  JSON_DIR: kb
 
 jobs:
   deploy-json:
@@ -12,10 +17,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy JSON to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./kb
-          destination_dir: kb
+          github_token: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
+          publish_dir: ${{ env.JSON_DIR }}
+          commit_message: "Deploy JSON files to GitHub Pages"
+          destination_dir: ${{ env.JSON_DIR }}
