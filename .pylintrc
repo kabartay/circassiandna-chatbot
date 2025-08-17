@@ -10,7 +10,7 @@ ignore-paths=venv/*
 
 [MESSAGES CONTROL]
 # Disable specific messages, e.g., the parse error for missing files
-disable=F0010,import-error,redefined-outer-name,too-few-public-methods,broad-exception-caught
+disable=F0010,C0103,import-error,redefined-outer-name,too-few-public-methods,broad-exception-caught
 
 [FORMAT]
 # Match your black config for line length

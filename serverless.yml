@@ -1,5 +1,6 @@
-service: circassiandna-chat
+service: circassiandna-chatbot
 frameworkVersion: '3'
+
 provider:
   name: aws
   runtime: python3.11
@@ -7,14 +8,59 @@ provider:
   environment:
     OPENAI_API_KEY: ${env:OPENAI_API_KEY}
     PINECONE_API_KEY: ${env:PINECONE_API_KEY}
-    PINECONE_ENV: ${env:PINECONE_ENV}
-    PINECONE_INDEX: circassiandna-knowledgebase
+    PINECONE_INDEX: ${env:PINECONE_INDEX}
+    PINECONE_ENVIRONMENT: ${env:PINECONE_ENVIRONMENT}
+    PINECONE_CLOUD: ${env:PINECONE_CLOUD}
+    PINECONE_REGION: ${env:PINECONE_REGION}
+    PINECONE_NAMESPACE: ${env:PINECONE_NAMESPACE}
+    PORT: ${env:PORT}
   iamRoleStatements:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
       Resource: '*'
 
+package:
+  exclude:
+    - tests/**
+    - docs/**
+    - venv/**
+
+custom:
+  pythonRequirements:
+    fileName: requirements-lambda.txt  # requirements for Lambda
+    layer: true
+    slim: true
+    strip: true
+    dockerizePip: false   # ensures Lambda-compatible packages (<250 Mb)
+    noDeploy:             # exclude dev-only libs from Lambda
+      - black
+      - isort
+      - pylint
+      - pre-commit
+      - pytest
+      - gunicorn
+      - sphinx
+      - sphinx-rtd-theme
+
+plugins:
+  - serverless-python-requirements
+
+layers:
+  pythonDependencies:
+    path: layer
+    compatibleRuntimes:
+      - python3.11
+
 functions:
   web:
-    handler: lambda_handler
+    handler: lambda_handler.handler
+    layers:
+      - { Ref: PythonDependenciesLambdaLayer }
+    events:
+      - httpApi:       # Use httpApi (v2) or http (REST API, v1)
+          path: /
+          method: ANY
+      - httpApi:
+          path: /api/chat
+          method: POST

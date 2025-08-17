@@ -32,12 +32,20 @@ install: create-env
 	$(PIP) install --upgrade pip
 
 	@echo "Testing availability of requirements.txt"
-	@if [ ! -f requirements.txt ]; then \
-		echo "Missing requirements.txt" >&2; \
+	@if [ ! -f requirements-dev.txt ]; then \
+		echo "Missing requirements-dev.txt" >&2; \
 		exit 1; \
 	fi
 	@echo "Installing packages"
-	$(PIP) install -r requirements.txt
+	$(PIP) install -r requirements-dev.txt
+
+	@echo "Testing availability of requirements.txt"
+	@if [ ! -f requirements-lambda.txt ]; then \
+		echo "Missing requirements-lamdba.txt" >&2; \
+		exit 1; \
+	fi
+	@echo "Installing packages"
+	$(PIP) install -r requirements-lambda.txt
 
 	@echo "Installing pre-commit"
 	$(PIP) install pre-commit
