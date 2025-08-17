@@ -45,14 +45,14 @@ All heavy dependencies (flask, awsgi, pinecone, etc.) are moved into `Lambda Lay
 
 ## Features
 
-- Flask API backend – A lightweight **Flask** application (`app.py`) exposing chatbot Q&A endpoints.
-- Smart retrieval with embeddings – Combines **OpenAI** embeddings and **Pinecone** vector search for context-aware answers (DNA, Circassian ancestry).
-- Domain-focused knowledge base – Ships with a sample Circassian FAQ (`knowledgebase.json`) and can be extended with custom content.
-- Serverless deployment – Easily deployable to **AWS Lambda** + **API Gateway** via **Serverless Framework** or **AWS SAM**.
-- Embeddable chatbot widget – Plug-and-play **JavaScript** widget (`static/chat-widget.js`) to add the chatbot UI into any website.
-- A PHP code (`chatbot-widget-global-web.php`) to register a **wp_footer** hook in **WordPress** to automatically embed the Circassian DNA ChatBot on all site pages. It defines CSS styles, HTML markup, and JS logic. Drop this snippet into your **WordPress** theme’s `functions.php` or via a custom plugin. The chatbot will appear as a floating chat widget on every page.Powered by your deployed backend API (on **Render** or **AWS**).
-- Customizable UI – Basic **HTML/CSS** frontend (`templates/` + `static/`) for quick testing or integration.
-- Multi-environment setup – Separate `requirements-dev.txt` (dev/Docker) and `requirements-lambda.txt` (minimal Lambda layer) for optimized deployments.
+- **Flask API backend** – A lightweight **Flask** application (`app.py`) exposing chatbot Q&A endpoints.
+- **Smart retrieval with embeddings** – Combines **OpenAI** embeddings and **Pinecone** vector search for context-aware answers (DNA, Circassian ancestry).
+- **Domain-focused knowledge base** – Ships with a sample Circassian FAQ (`knowledgebase.json`) and can be extended with custom content.
+- **Serverless deployment** – Easily deployable to **AWS Lambda** + **API Gateway** via **Serverless Framework** or **AWS SAM**.
+- **Embeddable chatbot widget** – Plug-and-play **JavaScript** widget (`static/chat-widget.js`) to add the chatbot UI into any website.
+- **A PHP code** – registers a **wp_footer** hook (`chatbot-widget-global-web.php`) in **WordPress** to automatically embed the Circassian DNA ChatBot on all site pages. It defines CSS styles, HTML markup, and JS logic. Drop this snippet into your **WordPress** theme’s `functions.php` or via a custom plugin. The chatbot will appear as a floating chat widget on every page.Powered by your deployed backend API (on **Render** or **AWS**).
+- **Customizable UI** – Basic **HTML/CSS** frontend (`templates/` + `static/`) for quick testing or integration.
+- **Multi-environment setup** – Separate `requirements-dev.txt` (dev/Docker) and `requirements-lambda.txt` (minimal Lambda layer) for optimized deployments.
 
 ## Getting Started
 
