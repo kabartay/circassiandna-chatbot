@@ -3,13 +3,14 @@ name: JSON Validation
 on:
   push:
     paths:
-      - "kb/*.json"
+      - "*.json"
   pull_request:
     paths:
-      - "kb/*.json"
+      - "*.json"
 
 env:
-  JSON_DIR: kb
+  JSON_DIR: .
+  JSON_FILE: knowledgebase.json
 
 jobs:
   validate-json:
@@ -74,7 +75,7 @@ jobs:
           git checkout -B deployment origin/deployment
 
           # Stage changes
-          git add kb/*.json
+          git add ${{ env.JSON_DIR }}/${{ env.JSON_FILE }}.json
 
           # Commit only if there are changes
           git diff --cached --quiet || git commit -m "Format JSON files with Prettier."

@@ -10,6 +10,7 @@ on:
 
 env:
   JSON_DIR: kb
+  JSON_FILE: knowledgebase.json
 
 jobs:
   deploy-json:
@@ -19,6 +20,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Copy root knowledgebase.json to kb/
+        run: |
+          mkdir -p ${{ env.JSON_DIR }}
+          cp ${{ env.JSON_FILE }} ${{ env.JSON_DIR }}/${{ env.JSON_FILE }}
 
       - name: Deploy JSON to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
