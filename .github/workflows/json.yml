@@ -68,6 +68,16 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+
+          # Fetch the latest remote branch
+          git fetch origin deployment
+          git checkout -B deployment origin/deployment
+
+          # Stage changes
           git add kb/*.json
-          git diff --quiet || git commit -m "Format JSON files with Prettier."
-          git push https://kabartay:${PAT}@github.com/kabartay/circassiandna-chatbot.git HEAD:deployment
+
+          # Commit only if there are changes
+          git diff --cached --quiet || git commit -m "Format JSON files with Prettier."
+
+          # Push changes safely
+          git push https://kabartay:${PAT}@github.com/kabartay/circassiandna-chatbot.git HEAD:deployment --force-with-lease
