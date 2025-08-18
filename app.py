@@ -446,7 +446,11 @@ def chat() -> Response:
 
                 prompt = (
                     "You are a helpful assistant for Circassian DNA.\n"
-                    "Use knowledge base entries to answer the question.\n\n"
+                    "First, check the knowledge base entries below.\n"
+                    "If you find a relevant answer, use it directly.\n"
+                    "If the knowledge base does not have a clear answer, "
+                    "you may use your own knowledge.\n"
+                    "Always prefer the knowledge base if there is a match.\n\n"
                     f"Knowledge base: {combined_context}\n\n"
                     f"Question: {question}\n"
                     "Answer:"
