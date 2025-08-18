@@ -75,7 +75,7 @@ jobs:
           git checkout -B deployment origin/deployment
 
           # Stage changes
-          git add ${{ env.JSON_DIR }}/${{ env.JSON_FILE }}.json
+          git add ${{ env.JSON_DIR }}/${{ env.JSON_FILE }}
 
           # Commit only if there are changes
           git diff --cached --quiet || git commit -m "Format JSON files with Prettier."
