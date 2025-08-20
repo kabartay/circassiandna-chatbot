@@ -172,3 +172,6 @@ package.json
 # macOS system files
 .DS_Store
 **/.DS_Store
+
+# Knowledge base files
+data

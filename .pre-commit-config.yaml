@@ -16,3 +16,14 @@ repos:
     hooks:
       - id: pylint
         args: ["--ignore=venv"]
+
+  - repo: local
+    hooks:
+    -   id: combine-jsons
+        name: Combine JSONs from directory
+        entry: python3 combine_jsons.py
+        language: system
+        always_run: true
+        stages: [commit]
+        pass_filenames: false
+        additional_dependencies: []

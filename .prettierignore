@@ -1,0 +1,26 @@
+# Ignore node_modules
+
+node_modules/
+
+# Ignore build/output directories
+
+dist/
+build/
+
+# Ignore lock files if you don’t want them formatted
+
+package-lock.json
+yarn.lock
+
+# Ignore specific config files
+
+*.config.js
+*.min.js
+
+# Do NOT ignore your JSON data folder to allowe formatting
+
+# data/
+
+# Ignore other temporary files
+
+*.log

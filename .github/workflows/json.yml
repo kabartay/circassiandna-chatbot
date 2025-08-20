@@ -17,10 +17,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout full repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
+          fetch-depth: 0   # fetch full history
 
       - name: Install jq
         run: sudo apt-get install -y jq
@@ -63,22 +64,24 @@ jobs:
         if: env.CHECK_EXIT_CODE != '0'
         run: prettier --check "$JSON_DIR/**/*.json"
 
-      - name: Commit formatted JSON if changes were made and not failed
-        env:
-          PAT: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+      # - name: Commit formatted JSON if changes were made and not failed
+      #   env:
+      #     PAT: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
+      #   run: |
+      #     git config user.name "GitHub Actions"
+      #     git config user.email "actions@github.com"
 
-          # Fetch the latest remote branch
-          git fetch origin deployment
-          git checkout -B deployment origin/deployment
+      #     # Fetch the latest remote branch
+      #     git fetch origin deployment
+      #     git checkout deployment
+      #     git reset --hard origin/deployment  # reset local branch to remote
 
-          # Stage changes
-          git add ${{ env.JSON_DIR }}/${{ env.JSON_FILE }}
+      #     # Stage changes
+      #     git add ${{ env.JSON_DIR }}/${{ env.JSON_FILE }}
+      #     git add ${{ env.JSON_DIR }}/tests/*.json
 
-          # Commit only if there are changes
-          git diff --cached --quiet || git commit -m "Format JSON files with Prettier."
+      #     # Commit only if there are changes
+      #     git diff --cached --quiet || git commit -m "Format JSON files with Prettier."
 
-          # Push changes safely
-          git push https://kabartay:${PAT}@github.com/kabartay/circassiandna-chatbot.git HEAD:deployment --force-with-lease
+      #     # Push changes safely
+      #     git push https://kabartay:${PAT}@github.com/kabartay/circassiandna-chatbot.git HEAD:deployment --force-with-lese

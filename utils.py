@@ -19,7 +19,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 import logging
+import re
 from typing import Optional
+
+
+def remove_trailing_commas(text: str) -> str:
+    """
+    Remove trailing commas before } or ] in a JSON string.
+    """
+    # Remove comma before }
+    text = re.sub(r",\s*}", "}", text)
+    # Remove comma before ]
+    text = re.sub(r",\s*]", "]", text)
+    return text
 
 
 def get_module_logger(mod_name: Optional[str] = None) -> logging.Logger:
