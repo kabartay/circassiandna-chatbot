@@ -7,4 +7,4 @@ pinecone-client==6.0.0
 #awsgi2==1.0.2
 apig-wsgi==2.19.0
 awslambdaric==3.1.1
-typing-extensions>=4.10.0
+typing-extensions==4.14.0

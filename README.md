@@ -19,6 +19,7 @@ This repository provides a chatbot answering questions about DNA testing, haplog
     ├── requirements-lambda.txt        # Minimal dependencies optimized for AWS Lambda layer
     ├── app.py                         # Flask backend API (chat endpoints, embeddings, Pinecone retrieval)
     ├── lambda_handler.py              # AWS Lambda entrypoint (wraps Flask via apig-wsgi/awsgi2)
+    ├── combine_jsons.py               # Pre-commit hook script for combining JSON files into a single JSON file.
     ├── knowledgebase.json             # JSON knowledge base (FAQ pairs for retrieval)
     ├── serverless.yml                 # Serverless Framework deployment config (API Gateway + Lambda + Layers)
     ├── template.yaml                  # AWS SAM alternative deployment config (if used)
