@@ -27,7 +27,7 @@ window.ChatWidget = {
         const container = document.getElementById(containerId);
         if (!container) return;
 
-        // Create the styled input row that will be detected by the MutationObserver
+        // Create ONLY the input row - remove the old chatlog structure
         container.innerHTML = `
             <div class="cw-input-row">
                 <input type="text" id="userInput" placeholder="Ask me something...">
@@ -42,7 +42,7 @@ window.ChatWidget = {
             const message = input.value.trim();
             if (!message) return;
 
-            // Add user message using the callback
+            // Add user message using callback
             if (onMessage) {
                 onMessage(message, 'user');
             }
@@ -65,7 +65,7 @@ window.ChatWidget = {
 
                 const data = await response.json();
 
-                // Add bot response using the callback
+                // Add bot response using callback
                 if (onMessage) {
                     onMessage(data.answer, 'bot');
                 }
@@ -73,7 +73,7 @@ window.ChatWidget = {
             } catch (err) {
                 console.error('Chat widget error:', err);
 
-                // Add error message using the callback
+                // Add error message using callback
                 if (onMessage) {
                     onMessage('Sorry, an error occurred. Please try again.', 'bot');
                 }
@@ -96,7 +96,7 @@ window.ChatWidget = {
             input.focus();
         }, 100);
 
-        // Return object with useful methods for external control
+        // Return object with utility methods
         return {
             sendMessage,
             focusInput: () => input.focus(),
