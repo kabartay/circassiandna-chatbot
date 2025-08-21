@@ -2,7 +2,7 @@
 set -e
 
 # Directories/files to check
-FILES=( *.json data/*.json )
+FILES=( *.json data/**/*.json )
 
 # Loop over JSON files in root and data/
 for file in "${FILES[@]}"; do
