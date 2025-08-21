@@ -23,25 +23,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 window.ChatWidget = {
-    init: function ({ apiUrl, containerId }) {
+    init: function ({ apiUrl, containerId, onMessage, onTyping }) {
         const container = document.getElementById(containerId);
         if (!container) return;
 
+        // Create ONLY the input row - remove the old chatlog structure
         container.innerHTML = `
-            <div id="chatlog" style="border:1px solid #ccc; height:200px; overflow:auto; padding:10px;"></div>
-            <input type="text" id="userInput" placeholder="Ask me something..." style="width:80%;">
-            <button id="sendBtn">Send</button>
+            <div class="cw-input-row">
+                <input type="text" id="userInput" placeholder="Ask me something...">
+                <button id="sendBtn">Send</button>
+            </div>
         `;
 
-        const chatlog = container.querySelector("#chatlog");
         const input = container.querySelector("#userInput");
         const button = container.querySelector("#sendBtn");
 
         const sendMessage = async () => {
             const message = input.value.trim();
             if (!message) return;
-            chatlog.innerHTML += `<div><b>You:</b> ${message}</div>`;
+
+            // Add user message using callback
+            if (onMessage) {
+                onMessage(message, 'user');
+            }
+
             input.value = '';
+
+            // Show typing indicator
+            if (onTyping) {
+                onTyping();
+            }
 
             try {
                 const response = await fetch(apiUrl, {
@@ -49,13 +60,23 @@ window.ChatWidget = {
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ question: message }),
                 });
+
                 if (!response.ok) throw new Error("Network error");
+
                 const data = await response.json();
-                chatlog.innerHTML += `<div><b>Bot:</b> ${data.answer}</div>`;
-                chatlog.scrollTop = chatlog.scrollHeight;
+
+                // Add bot response using callback
+                if (onMessage) {
+                    onMessage(data.answer, 'bot');
+                }
+
             } catch (err) {
-                chatlog.innerHTML += `<div><b>Bot:</b> Sorry, error occurred.</div>`;
-                console.error(err);
+                console.error('Chat widget error:', err);
+
+                // Add error message using callback
+                if (onMessage) {
+                    onMessage('Sorry, an error occurred. Please try again.', 'bot');
+                }
             }
         };
 
@@ -69,5 +90,18 @@ window.ChatWidget = {
                 sendMessage();
             }
         });
+
+        // Auto-focus on input when widget loads
+        setTimeout(() => {
+            input.focus();
+        }, 100);
+
+        // Return object with utility methods
+        return {
+            sendMessage,
+            focusInput: () => input.focus(),
+            clearInput: () => input.value = '',
+            setPlaceholder: (text) => input.placeholder = text
+        };
     }
 };
