@@ -67,7 +67,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-# docs/_build/
+docs/_build/
 
 # PyBuilder
 .pybuilder/
@@ -174,4 +174,4 @@ package.json
 **/.DS_Store
 
 # Knowledge base files
-# data
+data
