@@ -4,6 +4,14 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  contents: write   # needed for GITHUB_TOKEN to push to gh-pages
+
+concurrency:
+  group: docs-pages
+  cancel-in-progress: true
 
 jobs:
   deploy-docs:
@@ -17,6 +25,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -25,14 +34,22 @@ jobs:
 
       - name: Build documentation
         run: |
-          sphinx-build -b html docs/source docs/build
+          sphinx-build -E -b html docs/source docs/build
           # create .nojekyll to prevent GitHub Pages ignoring _static etc.
           touch docs/build/.nojekyll
+
+      - name: "Guard: no .env files in publish dir"
+        run: |
+          if find docs/build -type f \( -name ".env" -o -name ".env.*" -o -name "*.env" \) | grep -q .; then
+            echo "::error ::.env files found in docs/build"; exit 1;
+          fi
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.PAT_TOKEN_CIRCASSIANDNA }}
           publish_dir: docs/build
-          # Optional: customize the commit message
+          publish_branch: gh-pages
+          force_orphan: true
           commit_message: "Deploy docs to GitHub Pages"
