@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - docs/migrate-to-main
   workflow_dispatch:
 
 permissions:
@@ -30,20 +31,36 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install sphinx sphinx-rtd-theme
+          pip install "sphinx==8.2.0" "sphinx-rtd-theme==3.*"
 
-      - name: Build documentation
+      - name: Show docs sources present in this commit
         run: |
-          sphinx-build -E -b html docs/source docs/build
-          # create .nojekyll to prevent GitHub Pages ignoring _static etc.
+          ls -la docs/source
+          sed -n '1,160p' docs/source/index.rst
+
+      - name: Verify toctree target files exist
+        run: |
+          for f in docs/source/python.rst docs/source/infra.rst docs/source/deps.rst docs/source/data.rst docs/source/web.rst; do
+            [ -f "$f" ] || { echo "::error ::Missing $f"; exit 1; }
+          done
+
+      - name: Build documentation (fail on warnings)
+        run: |
+          sphinx-build -E -W -b html docs/source docs/build
+
+      - name: create .nojekyll to prevent GitHub Pages ignoring _static etc.
+        run: |
           touch docs/build/.nojekyll
+
+      - name: Verify RTD css present
+        run: |
+          test -f docs/build/_static/css/theme.css || (echo "::error ::RTD theme CSS missing"; exit 1)
 
       - name: "Guard: no .env files in publish dir"
         run: |
           if find docs/build -type f \( -name ".env" -o -name ".env.*" -o -name "*.env" \) | grep -q .; then
             echo "::error ::.env files found in docs/build"; exit 1;
           fi
-
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
