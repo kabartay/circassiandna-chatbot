@@ -22,6 +22,10 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.autosummary",
 ]
+extensions += [
+    "sphinx_design",
+    "sphinx_copybutton",
+]
 autosummary_generate = True
 
 templates_path = ["_templates"]
@@ -31,8 +35,40 @@ exclude_patterns = ["**/.env", "**/*.env"]
 root_doc = "index"
 
 # Options for HTML output
+html_static_path = ["_static", "../static"]
+html_logo = "_static/circassiandna_logo.webp"  # add your logo file
+html_favicon = "_static/favicon.ico"  # optional
 html_theme = "sphinx_rtd_theme"  # "alabaster"
-html_static_path = ["_static"]
+
+html_theme_options = {
+    "navigation_depth": 3,
+    "collapse_navigation": False,
+    "sticky_navigation": True,
+    "style_external_links": True,
+    "prev_next_buttons_location": "both",
+    "logo_only": False,  # logo in sidebar
+}
+
+# “Edit on GitHub” link in the header
+html_context = {
+    "display_github": True,
+    "github_user": "kabartay",
+    "github_repo": "circassiandna-chatbot",
+    "github_version": "main",
+    "conf_py_path": "/docs/source/",
+}
+
+# Optional: a canonical base URL + sitemap
+html_baseurl = "https://kabartay.github.io/circassiandna-chatbot/"
+extensions += ["sphinx_sitemap"]
+sitemap_url_scheme = "{link}"
+
+# Ogg
+extensions += ["sphinxext.opengraph"]
+ogp_site_url = html_baseurl
+ogp_site_name = "CircassianDNA Chatbot"
+ogp_image = "_static/circassiandna_logo.webp"  # default preview img
+ogp_description_length = 200  # trims description
 
 # Only add _static if it exists (prevents warnings in CI)
 here = os.path.dirname(__file__)
