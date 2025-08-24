@@ -1,0 +1,201 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Quickstart" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kabartay.github.io/circassiandna-chatbot/quickstart.html" />
+<meta property="og:site_name" content="CircassianDNA Chatbot" />
+<meta property="og:description" content="Create a virtual environment and install docs/runtime deps. Run the app locally: The app listens on http://localhost:5000/(see also/static/chat-widget.js). Run tests:" />
+<meta property="og:image" content="https://kabartay.github.io/circassiandna-chatbot/_static/circassiandna_logo.webp" />
+<meta property="og:image:alt" content="CircassianDNA Chatbot" />
+<meta name="description" content="Create a virtual environment and install docs/runtime deps. Run the app locally: The app listens on http://localhost:5000/(see also/static/chat-widget.js). Run tests:" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quickstart &mdash; CircassianDNA Chatbot v1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/code.css?v=9288cac2" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="canonical" href="https://kabartay.github.io/circassiandna-chatbot/quickstart.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76e2d817"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Deployment" href="deployment.html" />
+    <link rel="prev" title="Configuration" href="config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CircassianDNA Chatbot
+              <img src="_static/circassiandna_logo.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Code &amp; Files</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="project-structure.html">Project structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deps.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data files and knowledge base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infra.html">Infrastracture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web.html">Web artifacts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Run &amp; Deploy</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-tests.html">API Tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Web integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="web-integration.html">Web Integration</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CircassianDNA Chatbot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quickstart</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/kabartay/circassiandna-chatbot/blob/main/docs/source/quickstart.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="config.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deployment.html" class="btn btn-neutral float-right" title="Deployment" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Prereqs:</strong> Python 3.11+, an active virtualenv, and the following environment variables.
+See <a class="reference internal" href="config.html"><span class="doc">Configuration</span></a> for details.</p>
+<p><strong>Minimum env vars</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OPENAI_API_KEY</span></code> - OpenAI API key</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PINECONE_API_KEY</span></code> - Pinecone API key</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PINECONE_INDEX</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">circassiandna-knowledgebase</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PINECONE_ENVIRONMENT</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">us-east1-aws</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PINECONE_REGION</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PINECONE_NAMESPACE</span></code> (optional, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;&quot;`</span></code>)</p></li>
+</ul>
+<p><strong>Set them (example)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-...
+<span class="nb">export</span><span class="w"> </span><span class="nv">PINECONE_API_KEY</span><span class="o">=</span>pcsk_...
+<span class="nb">export</span><span class="w"> </span><span class="nv">PINECONE_INDEX</span><span class="o">=</span>circassiandna-knowledgebase
+<span class="nb">export</span><span class="w"> </span><span class="nv">PINECONE_ENV</span><span class="o">=</span>us-east1-aws
+<span class="nb">export</span><span class="w"> </span><span class="nv">PINECONE_REGION</span><span class="o">=</span>us-east-1
+<span class="nb">export</span><span class="w"> </span><span class="nv">PINECONE_NAMESPACE</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Never commit secrets. Keep <code class="docutils literal notranslate"><span class="pre">.env</span></code> out of git (add <code class="docutils literal notranslate"><span class="pre">.env</span></code> and <code class="docutils literal notranslate"><span class="pre">*.env</span></code> to <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>).</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Prefer a local <code class="docutils literal notranslate"><span class="pre">.env</span></code> file for development (not committed). Load it at runtime
+with your chosen method, or export the variables in your shell before running.</p>
+</div>
+<p>Create a virtual environment and install docs/runtime deps.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-lambda.txt
+</pre></div>
+</div>
+<section id="run-the-app-locally">
+<h2>Run the app locally<a class="headerlink" href="#run-the-app-locally" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># (optional) build Pinecone index first</span>
+python<span class="w"> </span>app.py<span class="w"> </span>build
+
+<span class="c1"># start the API</span>
+python<span class="w"> </span>app.py
+</pre></div>
+</div>
+<p>The app listens on <a class="reference external" href="http://localhost:5000/">http://localhost:5000/</a> (see also <code class="docutils literal notranslate"><span class="pre">/static/chat-widget.js</span></code>).</p>
+</section>
+<section id="run-tests">
+<h2>Run tests<a class="headerlink" href="#run-tests" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PYTHONPATH</span><span class="o">=</span>.<span class="w"> </span>pytest<span class="w"> </span>tests/test_app.py
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="config.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deployment.html" class="btn btn-neutral float-right" title="Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mukharbek Organokov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

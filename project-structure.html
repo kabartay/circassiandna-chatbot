@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Project structure" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kabartay.github.io/circassiandna-chatbot/project-structure.html" />
+<meta property="og:site_name" content="CircassianDNA Chatbot" />
+<meta property="og:description" content="Features: Flask API backend- Lightweight Flask app ( app.py) exposing chatbot Q&amp;A endpoints., Smart retrieval with embeddings- Uses OpenAI embeddings with Pinecone vector search for context-awa..." />
+<meta property="og:image" content="https://kabartay.github.io/circassiandna-chatbot/_static/circassiandna_logo.webp" />
+<meta property="og:image:alt" content="CircassianDNA Chatbot" />
+<meta name="description" content="Features: Flask API backend- Lightweight Flask app ( app.py) exposing chatbot Q&amp;A endpoints., Smart retrieval with embeddings- Uses OpenAI embeddings with Pinecone vector search for context-awa..." />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project structure &mdash; CircassianDNA Chatbot v1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/code.css?v=9288cac2" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="canonical" href="https://kabartay.github.io/circassiandna-chatbot/project-structure.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76e2d817"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python modules" href="python.html" />
+    <link rel="prev" title="CircassianDNA Chatbot documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CircassianDNA Chatbot
+              <img src="_static/circassiandna_logo.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Code &amp; Files</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deps.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data files and knowledge base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infra.html">Infrastracture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web.html">Web artifacts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Run &amp; Deploy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-tests.html">API Tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Web integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="web-integration.html">Web Integration</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CircassianDNA Chatbot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Project structure</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/kabartay/circassiandna-chatbot/blob/main/docs/source/project-structure.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="CircassianDNA Chatbot documentation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Python modules" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="project-structure">
+<h1>Project structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h1>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Flask API backend</strong> - Lightweight Flask app (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>) exposing chatbot Q&amp;A endpoints.</p></li>
+<li><p><strong>Smart retrieval with embeddings</strong> - Uses OpenAI embeddings with Pinecone vector search for context-aware answers (DNA, Circassian ancestry).</p></li>
+<li><p><strong>Domain-focused knowledge base</strong> - Ships with a sample Circassian FAQ (<code class="docutils literal notranslate"><span class="pre">knowledgebase.json</span></code>) and is easy to extend.</p></li>
+<li><p><strong>Serverless deployment</strong> - Deploy to AWS Lambda + API Gateway via <a class="reference internal" href="deployment.html"><span class="doc">Deployment</span></a>.</p></li>
+<li><p><strong>Embeddable chatbot widget</strong> - Plug-and-play JavaScript widget (<code class="docutils literal notranslate"><span class="pre">static/chat-widget.js</span></code>) for any website (see <a class="reference internal" href="web-integration.html"><span class="doc">Web Integration</span></a>).</p></li>
+<li><p><strong>WordPress/PHP integration</strong> - <code class="docutils literal notranslate"><span class="pre">chatbot-widget-global-web.php</span></code> registers a <code class="docutils literal notranslate"><span class="pre">wp_footer</span></code> hook to inject the widget site-wide. Drop it into a theme or small plugin; it renders a floating chat widget powered by your deployed API.</p></li>
+<li><p><strong>Customizable UI</strong> - Basic HTML/CSS frontend (<code class="docutils literal notranslate"><span class="pre">templates/</span></code> + <code class="docutils literal notranslate"><span class="pre">static/</span></code>) for quick testing and integration.</p></li>
+<li><p><strong>Multi-environment setup</strong> - Separate <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> (dev/Docker) and <code class="docutils literal notranslate"><span class="pre">requirements-lambda.txt</span></code> (minimal Lambda layer) for optimized deployments.</p></li>
+</ul>
+</section>
+<section id="repository-layout">
+<h2>Repository layout<a class="headerlink" href="#repository-layout" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>├── README.md                      # Project documentation, setup &amp; usage instructions
+├── Dockerfile                     # Docker image definition for local/dev/test deployment
+├── requirements-dev.txt           # Full Python dependencies (dev + Docker environments)
+├── requirements-docs.txt          # Docs/Sphinx dependencies
+├── requirements-lambda.txt        # Minimal dependencies optimized for AWS Lambda layer
+├── app.py                         # Flask backend API (chat endpoints, embeddings, Pinecone retrieval)
+├── lambda_handler.py              # AWS Lambda entrypoint (wraps Flask via apig-wsgi/awsgi2)
+├── combine_jsons.py               # Pre-commit hook script for combining JSON files into a single JSON file.
+├── knowledgebase.json             # JSON knowledge base (FAQ pairs for retrieval)
+├── serverless.yml                 # Serverless Framework deployment config (API Gateway + Lambda + Layers)
+├── template.yaml                  # AWS SAM alternative deployment config (if used)
+├── static/                        # Frontend static assets (used by templates/index.html)
+    ├── chat-widget.js             # Embeddable JS chat widget for external websites
+    └── style.css                  # Styling chatbot for the widget and UI
+├── templates/                     # Flask Jinja2 templates
+    └── index.html                 # Simple local test UI for the chatbot
+├── chatbot-widget-global-web.php  # PHP plugin wrapper to embed chatbot widget in websites
+└── layer/                         # AWS Lambda custom layer packaging
+    └── python/                    # Site-packages placed here during layer build
+└── tests/                         # Tests folder
+    ├── test_app.py                # Main file for Flask application tests
+    └── events/                    # Sample Lambda event payloads
+        ├── test-event-v1.json
+        ├── test-event-v1-post.json
+        └── test-event-v2.json
+└── docs/
+    ├── build/                        # HTML output (generated; not committed)
+    └── source/                       # Sphinx sources
+       ├── conf.py                    # Sphinx configuration (theme, extensions, paths)
+       ├── index.rst                  # Landing page (root document)
+       ├── quickstart.rst             # Setup &amp; run locally
+       ├── configuration.rst          # Environment variables &amp; settings
+       ├── deployment.rst             # Docker, Render, AWS (Serverless/SAM)
+       ├── api-tests.rst              # cURL &amp; Serverless invoke examples
+       ├── web-integration.rst        # Embed widget (HTML/WordPress)
+       ├── project-structure.rst      # Repository layout overview
+       ├── python.rst                 # Code reference (literalincludes / autodoc)
+       ├── infra.rst                  # Infra (Dockerfile, serverless.yml, Makefile)
+       ├── deps.rst                   # Dependency files (requirements-*.txt)
+       ├── data.rst                   # Knowledge base (knowledgebase.json)
+       ├── web.rst                    # Web assets (chat-widget.js, style.css, PHP)
+       └── _templates/                # (optional) Jinja2 templates to override theme
+       └── _static/                   # Static assets served by Sphinx
+          ├── favicon.ico             # (optional) Browser tab icon
+          └── logo.png                # (optional) Sidebar/header logo
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="CircassianDNA Chatbot documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral float-right" title="Python modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mukharbek Organokov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
