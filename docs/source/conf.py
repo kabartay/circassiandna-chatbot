@@ -7,6 +7,7 @@ Sphinx configuration file for CircassianDNA Chatbot documentation.
 
 # Where Sphinx looks for modules to document
 import os
+import shutil
 import sys
 
 # Project information
@@ -22,10 +23,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.autosummary",
 ]
-extensions += [
-    "sphinx_design",
-    "sphinx_copybutton",
-]
+extensions += ["sphinx_design", "sphinx_copybutton"]
 autosummary_generate = True
 
 templates_path = ["_templates"]
@@ -84,3 +82,18 @@ napoleon_use_rtype = True
 
 # Python path for autodoc
 sys.path.insert(0, os.path.abspath("./"))  # adjust to your code location
+
+
+# Makes knowledgebase.json downloadable
+def _copy_kb(_app):
+    here = os.path.dirname(__file__)
+    src = os.path.abspath(os.path.join(here, "../../knowledgebase.json"))
+    dst = os.path.join(here, "_assets", "knowledgebase.json")
+    os.makedirs(os.path.dirname(dst), exist_ok=True)
+    shutil.copy2(src, dst)
+
+
+# Setup files
+def setup(app):
+    app.add_css_file("code.css")  # Long JSON files
+    app.connect("builder-inited", _copy_kb)
