@@ -31,21 +31,29 @@ install: create-env
 	@echo "Upgrading pip"
 	$(PIP) install --upgrade pip
 
-	@echo "Testing availability of requirements.txt"
+	@echo "Testing availability of requirements-dev.txt"
 	@if [ ! -f requirements-dev.txt ]; then \
 		echo "Missing requirements-dev.txt" >&2; \
 		exit 1; \
 	fi
-	@echo "Installing packages"
+	@echo "Installing packages for Dev"
 	$(PIP) install -r requirements-dev.txt
 
-	@echo "Testing availability of requirements.txt"
+	@echo "Testing availability of requirements-lambda.txt"
 	@if [ ! -f requirements-lambda.txt ]; then \
 		echo "Missing requirements-lamdba.txt" >&2; \
 		exit 1; \
 	fi
-	@echo "Installing packages"
+	@echo "Installing packages for Lambda"
 	$(PIP) install -r requirements-lambda.txt
+
+	@echo "Testing availability of requirements-docs.txt"
+	@if [ ! -f requirements-docs.txt ]; then \
+		echo "Missing requirements-docs.txt" >&2; \
+		exit 1; \
+	fi
+	@echo "Installing packages for Sphinx"
+	$(PIP) install -r requirements-docs.txt
 
 	@echo "Installing pre-commit"
 	$(PIP) install pre-commit
