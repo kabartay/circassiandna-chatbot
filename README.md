@@ -16,6 +16,7 @@ This repository provides a chatbot answering questions about DNA testing, haplog
     ├── README.md                      # Project documentation, setup & usage instructions
     ├── Dockerfile                     # Docker image definition for local/dev/test deployment
     ├── requirements-dev.txt           # Full Python dependencies (dev + Docker environments)
+    ├── requirements-docs.txt          # Docs/Sphinx dependencies
     ├── requirements-lambda.txt        # Minimal dependencies optimized for AWS Lambda layer
     ├── app.py                         # Flask backend API (chat endpoints, embeddings, Pinecone retrieval)
     ├── lambda_handler.py              # AWS Lambda entrypoint (wraps Flask via apig-wsgi/awsgi2)
@@ -37,6 +38,27 @@ This repository provides a chatbot answering questions about DNA testing, haplog
             ├── test-event-v1.json
             ├── test-event-v1-post.json
             └── test-event-v2.json
+    └── docs/
+        ├── build/                        # HTML output (generated; not committed)
+        └── source/                       # Sphinx sources
+           ├── conf.py                    # Sphinx configuration (theme, extensions, paths)
+           ├── index.rst                  # Landing page (root document)
+           ├── quickstart.rst             # Setup & run locally
+           ├── configuration.rst          # Environment variables & settings
+           ├── deployment.rst             # Docker, Render, AWS (Serverless/SAM)
+           ├── api-tests.rst              # cURL & Serverless invoke examples
+           ├── web-integration.rst        # Embed widget (HTML/WordPress)
+           ├── project-structure.rst      # Repository layout overview
+           ├── python.rst                 # Code reference (literalincludes / autodoc)
+           ├── infra.rst                  # Infra (Dockerfile, serverless.yml, Makefile)
+           ├── deps.rst                   # Dependency files (requirements-*.txt)
+           ├── data.rst                   # Knowledge base (knowledgebase.json)
+           ├── web.rst                    # Web assets (chat-widget.js, style.css, PHP)
+           └── _templates/                # (optional) Jinja2 templates to override theme
+           └── _static/                   # Static assets served by Sphinx
+              ├── favicon.ico             # (optional) Browser tab icon
+              └── logo.png                # (optional) Sidebar/header logo
+        
 
 - `app.py` → main logic: Flask routes, embeddings, Pinecone retrieval, logging.
 - `lambda_handler.py` → glue between Flask app and AWS Lambda (via API Gateway).
@@ -280,13 +302,14 @@ For global integration (chatbot on every page), use `chatbot-widget-global-web.p
 
 ## Documentation
 
-See here (in progress): <https://kabartay.github.io/circassiandna-chatbot/>
+Documentation is available here: <https://kabartay.github.io/circassiandna-chatbot/>
 
 Docs are built with **Sphinx** (`docs/`) and deployed via GitHub Actions (`deploy-docs.yml`).
 
 Manual build:  
 
 ```bash
-sphinx-build -b html docs/source docs/build
+pip install -r requirements-docs.txt
+sphinx-build -E -W -b html docs/source docs/build
 python3 -m http.server --directory docs/build
 ```

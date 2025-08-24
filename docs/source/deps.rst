@@ -2,9 +2,9 @@ Dependencies
 ============
 
 .. note::
-   These are literal views of the files in a repo. Paths assume the docs
-   folder is at ``./``, not at ``docs/`` since files are at the repo root.
-   If your layout differs, tweak the ``.. literalinclude::`` paths accordingly.
+   - requirements-dev.txt           # Full Python dependencies (dev + Docker environments)
+   - requirements-docs.txt          # Docs/Sphinx dependencies
+   - requirements-lambda.txt        # Minimal dependencies optimized for AWS Lambda layer
 
 .. literalinclude:: ../../requirements-dev.txt
    :language: text
@@ -15,3 +15,8 @@ Dependencies
    :language: text
    :linenos:
    :caption: requirements-lambda.txt
+
+.. literalinclude:: ../../requirements-docs.txt
+   :language: text
+   :linenos:
+   :caption: requirements-docs.txt
