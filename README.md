@@ -3,7 +3,7 @@
 [![CI](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/ci.yml/badge.svg?branch=main&event=push)](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/ci.yml)
 [![Release](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/release.yml/badge.svg?event=push)](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/release.yml)
 [![Docs](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/docs.yml/badge.svg?branch=main&event=push)](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/docs.yml)
-[![GitHub Pages](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/deploy-docs.yml/badge.svg?branch=main&event=push)](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/deploy-docs.yml)
+[![Pages](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/deploy-docs.yml/badge.svg?branch=main&event=push)](https://github.com/kabartay/circassiandna-chatbot/actions/workflows/deploy-docs.yml)
 [![Style: Black](https://img.shields.io/badge/style-Black-000000.svg)](https://github.com/psf/black)
 [![Linter: Pylint](https://img.shields.io/badge/linter-Pylint-000000?logoColor=white)](https://github.com/PyCQA/pylint)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
