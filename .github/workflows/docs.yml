@@ -15,6 +15,6 @@ jobs:
           python-version: "3.11"
       - run: make install
       - name: Install Sphinx
-        run: pip install sphinx sphinx-rtd-theme
+        run: pip install -r requirements-docs.txt
       - name: Build HTML docs
-        run: sphinx-build -b html docs/source docs/build
+        run: sphinx-build -E -W -b html docs/source docs/build

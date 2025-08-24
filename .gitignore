@@ -66,8 +66,10 @@ instance/
 # Scrapy stuff:
 .scrapy
 
-# Sphinx documentation
-# docs/_build/
+# Sphinx build outputs (local & CI)
+docs/build/
+**/.doctrees/
+**/_autosummary/
 
 # PyBuilder
 .pybuilder/
@@ -114,7 +116,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+*.env
+.env.*
 .envrc
 .venv
 env/
@@ -174,4 +177,4 @@ package.json
 **/.DS_Store
 
 # Knowledge base files
-# data
+data
