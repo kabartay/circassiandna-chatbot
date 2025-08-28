@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Python modules" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kabartay.github.io/circassiandna-chatbot/python.html" />
+<meta property="og:site_name" content="CircassianDNA Chatbot" />
+<meta property="og:description" content="app.py, combine_jsons.py, lambda_handler.py, utils.py," />
+<meta property="og:image" content="https://kabartay.github.io/circassiandna-chatbot/_static/circassiandna_logo.webp" />
+<meta property="og:image:alt" content="CircassianDNA Chatbot" />
+<meta name="description" content="app.py, combine_jsons.py, lambda_handler.py, utils.py," />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python modules &mdash; CircassianDNA Chatbot v1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/code.css?v=9288cac2" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="canonical" href="https://kabartay.github.io/circassiandna-chatbot/python.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76e2d817"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dependencies" href="deps.html" />
+    <link rel="prev" title="Project structure" href="project-structure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            CircassianDNA Chatbot
+              <img src="_static/circassiandna_logo.webp" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Code &amp; Files</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="project-structure.html">Project structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deps.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data files and knowledge base</a></li>
+<li class="toctree-l1"><a class="reference internal" href="infra.html">Infrastracture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="web.html">Web artifacts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Run &amp; Deploy</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-tests.html">API Tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Web integration</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="web-integration.html">Web Integration</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CircassianDNA Chatbot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Python modules</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/kabartay/circassiandna-chatbot/blob/main/docs/source/python.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="project-structure.html" class="btn btn-neutral float-left" title="Project structure" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deps.html" class="btn btn-neutral float-right" title="Dependencies" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-modules">
+<h1>Python modules<a class="headerlink" href="#python-modules" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page shows <strong>literal source listings</strong> only — Sphinx does <strong>not</strong> import
+or execute these modules. Paths are relative to this file (<code class="docutils literal notranslate"><span class="pre">docs/source/python.rst</span></code>),
+so <code class="docutils literal notranslate"><span class="pre">../../app.py</span></code> points to the repo root.</p>
+<p>If you later switch to autodoc (e.g. <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule::</span> <span class="pre">app</span></code>), ensure your
+modules have <strong>no import-time side effects</strong> (no network calls, file I/O, or
+starting servers). Put run logic under:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Don’t expose secrets. Keep <code class="docutils literal notranslate"><span class="pre">.env</span></code> out of the repo and out of docs builds.
+In <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> you can guard with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exclude_patterns</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;**/.env&quot;</span><span class="p">,</span> <span class="s2">&quot;**/*.env&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Long files? Show a slice with <code class="docutils literal notranslate"><span class="pre">:lines:</span></code>,
+or highlight parts with <code class="docutils literal notranslate"><span class="pre">:emphasize-lines:</span></code>:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">literalinclude</span><span class="p">::</span> ../../app.py
+   <span class="nc">:language:</span> python
+   <span class="nc">:lines:</span> 1-120
+   <span class="nc">:emphasize-lines:</span> 12-18,45-47
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">app.py</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="ch">#!/usr/bin/env python</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">  4</span><span class="sd">Copyright (C) 2025 Mukharbek Organokov</span>
+<span class="linenos">  5</span><span class="sd">Website: www.circassiandna.com</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span><span class="sd">This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos">  8</span><span class="sd">it under the terms of the GNU General Public License as published by</span>
+<span class="linenos">  9</span><span class="sd">the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos"> 10</span><span class="sd">(at your option) any later version.</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span><span class="sd">This program is distributed in the hope that it will be useful,</span>
+<span class="linenos"> 13</span><span class="sd">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos"> 14</span><span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos"> 15</span><span class="sd">GNU General Public License for more details.</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="sd">You should have received a copy of the GNU General Public License</span>
+<span class="linenos"> 18</span><span class="sd">along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="linenos"> 19</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="linenos"> 22</span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="linenos"> 23</span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="linenos"> 26</span>    <span class="n">Flask</span><span class="p">,</span>
+<span class="linenos"> 27</span>    <span class="n">Response</span><span class="p">,</span>
+<span class="linenos"> 28</span>    <span class="n">jsonify</span><span class="p">,</span>
+<span class="linenos"> 29</span>    <span class="n">render_template</span><span class="p">,</span>
+<span class="linenos"> 30</span>    <span class="n">request</span><span class="p">,</span>
+<span class="linenos"> 31</span>    <span class="n">send_from_directory</span><span class="p">,</span>
+<span class="linenos"> 32</span><span class="p">)</span>
+<span class="linenos"> 33</span><span class="kn">from</span><span class="w"> </span><span class="nn">flask_cors</span><span class="w"> </span><span class="kn">import</span> <span class="n">CORS</span>
+<span class="linenos"> 34</span><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span><span class="p">,</span> <span class="n">OpenAIError</span>
+<span class="linenos"> 35</span><span class="kn">from</span><span class="w"> </span><span class="nn">pinecone</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pinecone</span>  <span class="c1"># ServerlessSpec</span>
+<span class="linenos"> 36</span><span class="kn">from</span><span class="w"> </span><span class="nn">pinecone.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">PineconeException</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="kn">from</span><span class="w"> </span><span class="nn">utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_module_logger</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="n">LOGGER</span> <span class="o">=</span> <span class="n">get_module_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="c1"># -------------------</span>
+<span class="linenos"> 43</span><span class="c1"># Environment</span>
+<span class="linenos"> 44</span><span class="c1"># -------------------</span>
+<span class="linenos"> 45</span><span class="n">KB</span> <span class="o">=</span> <span class="s2">&quot;circassiandna-knowledgebase&quot;</span>
+<span class="linenos"> 46</span><span class="n">OPENAI_API_KEY</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+<span class="linenos"> 47</span><span class="n">PINECONE_API_KEY</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PINECONE_API_KEY&quot;</span><span class="p">)</span>
+<span class="linenos"> 48</span><span class="n">PINECONE_INDEX</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PINECONE_INDEX&quot;</span><span class="p">,</span> <span class="n">KB</span><span class="p">)</span>
+<span class="linenos"> 49</span><span class="n">PINECONE_ENVIRONMENT</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PINECONE_ENVIRONMENT&quot;</span><span class="p">)</span>
+<span class="linenos"> 50</span><span class="n">PINECONE_CLOUD</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PINECONE_CLOUD&quot;</span><span class="p">)</span>
+<span class="linenos"> 51</span><span class="n">PINECONE_REGION</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PINECONE_REGION&quot;</span><span class="p">)</span>
+<span class="linenos"> 52</span><span class="n">PINECONE_NAMESPACE</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PINECONE_NAMESPACE&quot;</span><span class="p">)</span>
+<span class="linenos"> 53</span><span class="n">PORT_STR</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PORT&quot;</span><span class="p">)</span>
+<span class="linenos"> 54</span><span class="n">PORT</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">PORT_STR</span><span class="p">)</span> <span class="k">if</span> <span class="n">PORT_STR</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">8080</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span><span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting app on port </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
+<span class="linenos"> 57</span>
+<span class="linenos"> 58</span><span class="c1"># -------------------</span>
+<span class="linenos"> 59</span><span class="c1"># Config</span>
+<span class="linenos"> 60</span><span class="c1"># -------------------</span>
+<span class="linenos"> 61</span><span class="n">MODEL</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span>
+<span class="linenos"> 62</span><span class="n">TOP_N</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># for model</span>
+<span class="linenos"> 63</span><span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># for indexes</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="k">if</span> <span class="ow">not</span> <span class="n">OPENAI_API_KEY</span><span class="p">:</span>
+<span class="linenos"> 67</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY is missing!&quot;</span><span class="p">)</span>
+<span class="linenos"> 68</span>    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY is required&quot;</span><span class="p">)</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">OPENAI_API_KEY</span><span class="p">)</span>
+<span class="linenos"> 71</span><span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;OpenAI client initialized.&quot;</span><span class="p">)</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="c1"># -------------------</span>
+<span class="linenos"> 75</span><span class="c1"># Load Knowledge Base</span>
+<span class="linenos"> 76</span><span class="c1"># -------------------</span>
+<span class="linenos"> 77</span><span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 78</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;knowledgebase.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos"> 79</span>        <span class="n">KNOWLEDGEBASE</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="linenos"> 80</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Knowledge base loaded: </span><span class="si">%d</span><span class="s2"> entries&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">KNOWLEDGEBASE</span><span class="p">))</span>
+<span class="linenos"> 81</span><span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos"> 82</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;Failed to load knowledgebase.json: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos"> 83</span>    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load knowledgebase.json: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+<span class="linenos"> 84</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="c1"># -------------------</span>
+<span class="linenos"> 87</span><span class="c1"># Embedding</span>
+<span class="linenos"> 88</span><span class="c1"># -------------------</span>
+<span class="linenos"> 89</span><span class="k">def</span><span class="w"> </span><span class="nf">embed_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 91</span><span class="sd">    Generate an embedding using OpenAI.</span>
+<span class="linenos"> 92</span><span class="sd">    Uses the `text-embedding-3-small` embedding model.</span>
+<span class="linenos"> 93</span><span class="sd">    The dimension (1536) matches the Pinecone index configuration.</span>
+<span class="linenos"> 94</span><span class="sd">    :param text: The input text to be converted into a vector representation.</span>
+<span class="linenos"> 95</span><span class="sd">    :return: A 1536-dim embedding vector corresponding to the input text.</span>
+<span class="linenos"> 96</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 97</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 98</span>        <span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;text-embedding-3-small&quot;</span>
+<span class="linenos"> 99</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">embeddings</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="nb">input</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+<span class="linenos">100</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Embedding generated for text of length </span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+<span class="linenos">101</span>        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">embedding</span>
+<span class="linenos">102</span>    <span class="k">except</span> <span class="n">OpenAIError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">103</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+<span class="linenos">104</span>            <span class="s2">&quot;Embedding generation failed for text=&#39;</span><span class="si">%s</span><span class="s2">&#39;: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">err</span>
+<span class="linenos">105</span>        <span class="p">)</span>
+<span class="linenos">106</span>        <span class="k">raise</span>
+<span class="linenos">107</span>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="linenos">108</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Unexpected error during embedding generation.&quot;</span><span class="p">)</span>
+<span class="linenos">109</span>        <span class="k">raise</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="c1"># -------------------</span>
+<span class="linenos">113</span><span class="c1"># Build indexes</span>
+<span class="linenos">114</span><span class="c1"># -------------------</span>
+<span class="linenos">115</span><span class="k">def</span><span class="w"> </span><span class="nf">build_index</span><span class="p">(</span><span class="n">pc</span><span class="p">,</span> <span class="n">index_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">PINECONE_INDEX</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">116</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">117</span><span class="sd">    Build or rebuild the Pinecone index with knowledgebase data.</span>
+<span class="linenos">118</span><span class="sd">    This function checks if the specified Pinecone index exists and creates it</span>
+<span class="linenos">119</span><span class="sd">    if necessary. It then embeds each entry from the knowledge base using</span>
+<span class="linenos">120</span><span class="sd">    OpenAI&#39;s embedding API and uploads the vectors to Pinecone in batches.</span>
+<span class="linenos">121</span><span class="sd">    :param pc: An initialized Pinecone client instance.</span>
+<span class="linenos">122</span><span class="sd">    :param index_name: Name of the index to create or update.</span>
+<span class="linenos">123</span><span class="sd">    :return: None.</span>
+<span class="linenos">124</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">125</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">126</span>        <span class="n">indexes</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">list_indexes</span><span class="p">()</span><span class="o">.</span><span class="n">names</span><span class="p">()</span>
+<span class="linenos">127</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Current Pinecone indexes: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">indexes</span><span class="p">)</span>
+<span class="linenos">128</span>
+<span class="linenos">129</span>        <span class="k">if</span> <span class="n">index_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">indexes</span><span class="p">:</span>
+<span class="linenos">130</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Creating Pinecone index: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_name</span><span class="p">)</span>
+<span class="linenos">131</span>            <span class="k">if</span> <span class="ow">not</span> <span class="n">PINECONE_CLOUD</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">PINECONE_REGION</span><span class="p">:</span>
+<span class="linenos">132</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;PINECONE_CLOUD or PINECONE_REGION missing!&quot;</span><span class="p">)</span>
+<span class="linenos">133</span>                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="linenos">134</span>                    <span class="s2">&quot;PINECONE_CLOUD and PINECONE_REGION are not found.&quot;</span>
+<span class="linenos">135</span>                <span class="p">)</span>
+<span class="linenos">136</span>            <span class="n">pc</span><span class="o">.</span><span class="n">create_index</span><span class="p">(</span>
+<span class="linenos">137</span>                <span class="n">name</span><span class="o">=</span><span class="n">index_name</span><span class="p">,</span>
+<span class="linenos">138</span>                <span class="n">dimension</span><span class="o">=</span><span class="mi">1536</span><span class="p">,</span>  <span class="c1"># matches text-embedding-3-small</span>
+<span class="linenos">139</span>                <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;cosine&quot;</span><span class="p">,</span>
+<span class="linenos">140</span>                <span class="c1"># spec=ServerlessSpec(</span>
+<span class="linenos">141</span>                <span class="c1">#     cloud=PINECONE_CLOUD, region=PINECONE_REGION</span>
+<span class="linenos">142</span>                <span class="c1"># ),</span>
+<span class="linenos">143</span>            <span class="p">)</span>
+<span class="linenos">144</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created new Pinecone index: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">index_name</span><span class="p">)</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span>        <span class="n">idx</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">index_name</span><span class="p">)</span>
+<span class="linenos">147</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Indexes stats: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">idx</span><span class="o">.</span><span class="n">describe_index_stats</span><span class="p">())</span>
+<span class="linenos">148</span>
+<span class="linenos">149</span>        <span class="n">vectors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">150</span>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">KNOWLEDGEBASE</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+<span class="linenos">151</span>            <span class="k">try</span><span class="p">:</span>
+<span class="linenos">152</span>                <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="linenos">153</span>                <span class="n">emb</span> <span class="o">=</span> <span class="n">embed_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="linenos">154</span>                <span class="n">vectors</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">emb</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">}))</span>
+<span class="linenos">155</span>            <span class="k">except</span> <span class="n">OpenAIError</span><span class="p">:</span>
+<span class="linenos">156</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Skipping entry </span><span class="si">%r</span><span class="s2"> due to embedding failure&quot;</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="linenos">157</span>                <span class="k">continue</span>
+<span class="linenos">158</span>
+<span class="linenos">159</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vectors</span><span class="p">),</span> <span class="n">BATCH_SIZE</span><span class="p">):</span>
+<span class="linenos">160</span>            <span class="n">batch</span> <span class="o">=</span> <span class="n">vectors</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">BATCH_SIZE</span><span class="p">]</span>
+<span class="linenos">161</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+<span class="linenos">162</span>                <span class="s2">&quot;Uploading batch </span><span class="si">%s</span><span class="s2"> to </span><span class="si">%s</span><span class="s2">: (</span><span class="si">%s</span><span class="s2"> vectors)&quot;</span><span class="p">,</span>
+<span class="linenos">163</span>                <span class="n">i</span><span class="p">,</span>
+<span class="linenos">164</span>                <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">),</span>
+<span class="linenos">165</span>                <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">),</span>
+<span class="linenos">166</span>            <span class="p">)</span>
+<span class="linenos">167</span>            <span class="c1"># LOGGER.info(</span>
+<span class="linenos">168</span>            <span class="c1">#     &quot;Uploading batch %s to %s (%s vectors)&quot;,</span>
+<span class="linenos">169</span>            <span class="c1">#     i,</span>
+<span class="linenos">170</span>            <span class="c1">#     i + len(batch) - 1,</span>
+<span class="linenos">171</span>            <span class="c1">#     len(batch),</span>
+<span class="linenos">172</span>            <span class="c1"># )</span>
+<span class="linenos">173</span>            <span class="n">idx</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">vectors</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span>
+<span class="linenos">174</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Uploaded batch </span><span class="si">%d</span><span class="s2">-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">))</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Index build complete with </span><span class="si">%d</span><span class="s2"> vectors.&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vectors</span><span class="p">))</span>
+<span class="linenos">177</span>    <span class="k">except</span> <span class="n">PineconeException</span><span class="p">:</span>
+<span class="linenos">178</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Pinecone operation failed during index build.&quot;</span><span class="p">)</span>
+<span class="linenos">179</span>        <span class="k">raise</span>
+<span class="linenos">180</span>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="linenos">181</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Unexpected error while building Pinecone index.&quot;</span><span class="p">)</span>
+<span class="linenos">182</span>        <span class="k">raise</span>
+<span class="linenos">183</span>
+<span class="linenos">184</span>
+<span class="linenos">185</span><span class="c1"># -------------------</span>
+<span class="linenos">186</span><span class="c1"># Query</span>
+<span class="linenos">187</span><span class="c1"># -------------------</span>
+<span class="linenos">188</span><span class="k">def</span><span class="w"> </span><span class="nf">query_index</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="linenos">189</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">190</span><span class="sd">    Query Pinecone index, fallback to knowledge base if unavailable.</span>
+<span class="linenos">191</span><span class="sd">    :param query: Search query.</span>
+<span class="linenos">192</span><span class="sd">    :param top_k: Max number of results.</span>
+<span class="linenos">193</span><span class="sd">    :return: List of matched documents with</span>
+<span class="linenos">194</span><span class="sd">        - entry title;</span>
+<span class="linenos">195</span><span class="sd">        - entry text;</span>
+<span class="linenos">196</span><span class="sd">        - similarity score (1.0 for keyword matches).</span>
+<span class="linenos">197</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">198</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Query received: </span><span class="si">%s</span><span class="s2"> (top_k=</span><span class="si">%d</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
+<span class="linenos">199</span>    <span class="k">if</span> <span class="n">top_k</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos">200</span>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;top_k must be &gt;= 1&quot;</span><span class="p">)</span>
+<span class="linenos">201</span>
+<span class="linenos">202</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_fallback_search</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]:</span>
+<span class="linenos">203</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">204</span><span class="sd">        Perform a simple keyword search over the local knowledge base.</span>
+<span class="linenos">205</span><span class="sd">        This function searches both the keys (titles) and values (content)</span>
+<span class="linenos">206</span><span class="sd">        of the knowledge base dictionary for the given query string.</span>
+<span class="linenos">207</span><span class="sd">        Matching entries are returned with a fixed score of 1.0.</span>
+<span class="linenos">208</span><span class="sd">        :return: A list of matching entries.</span>
+<span class="linenos">209</span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos">210</span>        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos">211</span>        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">KNOWLEDGEBASE</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos">212</span>            <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">k</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="n">query</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+<span class="linenos">213</span>                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">})</span>
+<span class="linenos">214</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Fallback search found </span><span class="si">%d</span><span class="s2"> results&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">))</span>
+<span class="linenos">215</span>        <span class="k">return</span> <span class="n">results</span><span class="p">[:</span><span class="n">top_k</span><span class="p">]</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">218</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">PINECONE_API_KEY</span><span class="p">:</span>
+<span class="linenos">219</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+<span class="linenos">220</span>                <span class="s2">&quot;PINECONE_API_KEY not set. Using fallback KB search.&quot;</span>
+<span class="linenos">221</span>            <span class="p">)</span>
+<span class="linenos">222</span>            <span class="k">return</span> <span class="n">_fallback_search</span><span class="p">()</span>
+<span class="linenos">223</span>
+<span class="linenos">224</span>        <span class="c1"># Initialize Pinecone client</span>
+<span class="linenos">225</span>        <span class="n">pc</span> <span class="o">=</span> <span class="n">Pinecone</span><span class="p">(</span>
+<span class="linenos">226</span>            <span class="n">api_key</span><span class="o">=</span><span class="n">PINECONE_API_KEY</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="n">PINECONE_ENVIRONMENT</span>
+<span class="linenos">227</span>        <span class="p">)</span>
+<span class="linenos">228</span>
+<span class="linenos">229</span>        <span class="k">if</span> <span class="n">PINECONE_INDEX</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pc</span><span class="o">.</span><span class="n">list_indexes</span><span class="p">()</span><span class="o">.</span><span class="n">names</span><span class="p">():</span>
+<span class="linenos">230</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+<span class="linenos">231</span>                <span class="s2">&quot;Pinecone index not found: </span><span class="si">%s</span><span class="s2">. Using fallback KB search&quot;</span><span class="p">,</span>
+<span class="linenos">232</span>                <span class="n">PINECONE_INDEX</span><span class="p">,</span>
+<span class="linenos">233</span>            <span class="p">)</span>
+<span class="linenos">234</span>            <span class="k">return</span> <span class="n">_fallback_search</span><span class="p">()</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span>        <span class="n">idx</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="n">PINECONE_INDEX</span><span class="p">)</span>
+<span class="linenos">237</span>        <span class="k">try</span><span class="p">:</span>
+<span class="linenos">238</span>            <span class="n">q_emb</span> <span class="o">=</span> <span class="n">embed_text</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="linenos">239</span>        <span class="k">except</span> <span class="n">OpenAIError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">240</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;OpenAI embedding generation failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos">241</span>            <span class="k">return</span> <span class="n">_fallback_search</span><span class="p">()</span>
+<span class="linenos">242</span>
+<span class="linenos">243</span>        <span class="c1"># Query Pinecone API</span>
+<span class="linenos">244</span>        <span class="n">results</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+<span class="linenos">245</span>            <span class="n">vector</span><span class="o">=</span><span class="n">q_emb</span><span class="p">,</span>
+<span class="linenos">246</span>            <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">,</span>
+<span class="linenos">247</span>            <span class="n">namespace</span><span class="o">=</span><span class="n">PINECONE_NAMESPACE</span><span class="p">,</span>
+<span class="linenos">248</span>            <span class="n">include_metadata</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="linenos">249</span>        <span class="p">)</span>
+<span class="linenos">250</span>
+<span class="linenos">251</span>        <span class="c1"># Extract matches</span>
+<span class="linenos">252</span>        <span class="c1"># Access matches correctly from the QueryResponse object</span>
+<span class="linenos">253</span>        <span class="c1"># Uses match.metadata.get() so missing keys won’t cause crashes.</span>
+<span class="linenos">254</span>        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">255</span>            <span class="p">{</span>
+<span class="linenos">256</span>                <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">),</span>
+<span class="linenos">257</span>                <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">),</span>
+<span class="linenos">258</span>                <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">match</span><span class="o">.</span><span class="n">score</span><span class="p">,</span>
+<span class="linenos">259</span>            <span class="p">}</span>
+<span class="linenos">260</span>            <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">matches</span>
+<span class="linenos">261</span>        <span class="p">]</span>
+<span class="linenos">262</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Pinecone query returned </span><span class="si">%d</span><span class="s2"> matches&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="linenos">263</span>        <span class="k">return</span> <span class="n">data</span>
+<span class="linenos">264</span>    <span class="k">except</span> <span class="n">PineconeException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">265</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Pinecone query failed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos">266</span>        <span class="k">return</span> <span class="n">_fallback_search</span><span class="p">()</span>
+<span class="linenos">267</span>
+<span class="linenos">268</span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">269</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Unexpected error during query_index(): </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos">270</span>        <span class="k">return</span> <span class="n">_fallback_search</span><span class="p">()</span>
+<span class="linenos">271</span>
+<span class="linenos">272</span>
+<span class="linenos">273</span><span class="c1"># -------------------</span>
+<span class="linenos">274</span><span class="c1"># Flask App</span>
+<span class="linenos">275</span><span class="c1"># -------------------</span>
+<span class="linenos">276</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">static_folder</span><span class="o">=</span><span class="s2">&quot;static&quot;</span><span class="p">,</span> <span class="n">template_folder</span><span class="o">=</span><span class="s2">&quot;templates&quot;</span><span class="p">)</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span><span class="c1"># CORS(app)</span>
+<span class="linenos">279</span><span class="c1"># CORS(app, origins=[&quot;https://circassiandna.com&quot;])</span>
+<span class="linenos">280</span><span class="n">CORS</span><span class="p">(</span>
+<span class="linenos">281</span>    <span class="n">app</span><span class="p">,</span>
+<span class="linenos">282</span>    <span class="n">resources</span><span class="o">=</span><span class="p">{</span>
+<span class="linenos">283</span>        <span class="sa">r</span><span class="s2">&quot;/api/*&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">284</span>            <span class="s2">&quot;origins&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos">285</span>                <span class="s2">&quot;https://www.circassiandna.com&quot;</span><span class="p">,</span>
+<span class="linenos">286</span>                <span class="s2">&quot;https://circassiandna.com&quot;</span><span class="p">,</span>
+<span class="linenos">287</span>                <span class="s2">&quot;http://localhost:5000&quot;</span><span class="p">,</span>
+<span class="linenos">288</span>                <span class="s2">&quot;http://localhost:8000&quot;</span><span class="p">,</span>
+<span class="linenos">289</span>                <span class="s2">&quot;http://localhost:8080&quot;</span><span class="p">,</span>
+<span class="linenos">290</span>            <span class="p">]</span>
+<span class="linenos">291</span>        <span class="p">}</span>
+<span class="linenos">292</span>    <span class="p">},</span>
+<span class="linenos">293</span>    <span class="c1"># supports_credentials=True</span>
+<span class="linenos">294</span><span class="p">)</span>
+<span class="linenos">295</span>
+<span class="linenos">296</span><span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Flask app initialized.&quot;</span><span class="p">)</span>
+<span class="linenos">297</span>
+<span class="linenos">298</span>
+<span class="linenos">299</span><span class="c1"># -------------------</span>
+<span class="linenos">300</span><span class="c1"># Context Retrieval</span>
+<span class="linenos">301</span><span class="c1"># -------------------</span>
+<span class="linenos">302</span><span class="k">def</span><span class="w"> </span><span class="nf">retrieve_context</span><span class="p">(</span>
+<span class="linenos">303</span>    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_n</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">TOP_N</span>
+<span class="linenos">304</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="linenos">305</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">306</span><span class="sd">    Retrieve the most relevant knowledge base entries for a given question.</span>
+<span class="linenos">307</span><span class="sd">    :param question: The user&#39;s input question.</span>
+<span class="linenos">308</span><span class="sd">    :param top_n: Maximum number of relevant entries to return.</span>
+<span class="linenos">309</span><span class="sd">    :return: A list of dictionaries, each containing</span>
+<span class="linenos">310</span><span class="sd">        (q) The question/title from the knowledge base.</span>
+<span class="linenos">311</span><span class="sd">        (a) The corresponding answer/text.</span>
+<span class="linenos">312</span><span class="sd">        (score) Relevance score from Pinecone, if available.</span>
+<span class="linenos">313</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">314</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Retrieving context for question: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">question</span><span class="p">)</span>
+<span class="linenos">315</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">316</span>        <span class="n">hits</span> <span class="o">=</span> <span class="n">query_index</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="n">top_n</span><span class="p">)</span>
+<span class="linenos">317</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Context retrieval found </span><span class="si">%d</span><span class="s2"> hits&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">hits</span><span class="p">))</span>
+<span class="linenos">318</span>        <span class="k">return</span> <span class="p">[</span>
+<span class="linenos">319</span>            <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">h</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">h</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">h</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;score&quot;</span><span class="p">)}</span>
+<span class="linenos">320</span>            <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hits</span>
+<span class="linenos">321</span>        <span class="p">]</span>
+<span class="linenos">322</span>    <span class="k">except</span> <span class="n">PineconeException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">323</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Pinecone query failed. </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos">324</span>        <span class="k">return</span> <span class="p">[]</span>
+<span class="linenos">325</span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">326</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Unexpected error during context retrieval. </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos">327</span>        <span class="k">return</span> <span class="p">[]</span>
+<span class="linenos">328</span>
+<span class="linenos">329</span>
+<span class="linenos">330</span><span class="c1"># -------------------</span>
+<span class="linenos">331</span><span class="c1"># Serve Static Files</span>
+<span class="linenos">332</span><span class="c1"># -------------------</span>
+<span class="linenos">333</span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/static/&lt;path:filename&gt;&quot;</span><span class="p">)</span>
+<span class="linenos">334</span><span class="k">def</span><span class="w"> </span><span class="nf">serve_static</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="linenos">335</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">336</span><span class="sd">    Serve static files from the &#39;static&#39; directory.</span>
+<span class="linenos">337</span><span class="sd">    Ensures that requests like /static/chat-widget.js will work under Gunicorn</span>
+<span class="linenos">338</span><span class="sd">    in Docker since Flask doesn&#39;t serve static files unless a route to them is</span>
+<span class="linenos">339</span><span class="sd">    explicitely added. By default, Flask can serve static files in debug mode.</span>
+<span class="linenos">340</span><span class="sd">    :param filename: The relative path of the file within the &#39;static&#39; folder.</span>
+<span class="linenos">341</span><span class="sd">    :return: Flask response containing the requested static file.</span>
+<span class="linenos">342</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">343</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Serving static file: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+<span class="linenos">344</span>    <span class="k">return</span> <span class="n">send_from_directory</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">root_path</span><span class="p">,</span> <span class="s2">&quot;static&quot;</span><span class="p">),</span> <span class="n">filename</span><span class="p">)</span>
+<span class="linenos">345</span>
+<span class="linenos">346</span>
+<span class="linenos">347</span><span class="c1"># -------------------</span>
+<span class="linenos">348</span><span class="c1"># Main UI</span>
+<span class="linenos">349</span><span class="c1"># -------------------</span>
+<span class="linenos">350</span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+<span class="linenos">351</span><span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="linenos">352</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">353</span><span class="sd">    Render the main chatbot UI page.</span>
+<span class="linenos">354</span><span class="sd">    :return: Rendered HTML for the chatbot interface.</span>
+<span class="linenos">355</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">356</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Main UI requested&quot;</span><span class="p">)</span>
+<span class="linenos">357</span>    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">)</span>
+<span class="linenos">358</span>
+<span class="linenos">359</span>
+<span class="linenos">360</span><span class="c1"># -------------------</span>
+<span class="linenos">361</span><span class="c1"># Heatlh Check</span>
+<span class="linenos">362</span><span class="c1"># -------------------</span>
+<span class="linenos">363</span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/healthz&quot;</span><span class="p">)</span>
+<span class="linenos">364</span><span class="k">def</span><span class="w"> </span><span class="nf">healthz</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="linenos">365</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">366</span><span class="sd">    Health check endpoint to verify server status.</span>
+<span class="linenos">367</span><span class="sd">    :return: A tuple containing a status message and HTTP status code.</span>
+<span class="linenos">368</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">369</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Health check requested&quot;</span><span class="p">)</span>
+<span class="linenos">370</span>    <span class="k">return</span> <span class="s2">&quot;OK&quot;</span><span class="p">,</span> <span class="mi">200</span>
+<span class="linenos">371</span>
+<span class="linenos">372</span>
+<span class="linenos">373</span><span class="c1"># -------------------</span>
+<span class="linenos">374</span><span class="c1"># Chat API Endpoint</span>
+<span class="linenos">375</span><span class="c1"># -------------------</span>
+<span class="linenos">376</span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/api/chat&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;OPTIONS&quot;</span><span class="p">])</span>
+<span class="linenos">377</span><span class="k">def</span><span class="w"> </span><span class="nf">chat</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Response</span><span class="p">:</span>
+<span class="linenos">378</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">379</span><span class="sd">    Handle chat requests from the client.</span>
+<span class="linenos">380</span>
+<span class="linenos">381</span><span class="sd">    This endpoint:</span>
+<span class="linenos">382</span><span class="sd">      - Receives a JSON payload with a &quot;question&quot; field.</span>
+<span class="linenos">383</span><span class="sd">      - Retrieves relevant context from Pinecone or a fallback knowledge base.</span>
+<span class="linenos">384</span><span class="sd">      - Constructs a prompt for the OpenAI model.</span>
+<span class="linenos">385</span><span class="sd">      - Returns the model&#39;s answer as JSON.</span>
+<span class="linenos">386</span>
+<span class="linenos">387</span><span class="sd">    Request JSON:</span>
+<span class="linenos">388</span><span class="sd">        {</span>
+<span class="linenos">389</span><span class="sd">            &quot;question&quot;: &quot;&lt;user&#39;s question&gt;&quot;</span>
+<span class="linenos">390</span><span class="sd">        }</span>
+<span class="linenos">391</span>
+<span class="linenos">392</span><span class="sd">    Response JSON:</span>
+<span class="linenos">393</span><span class="sd">        {</span>
+<span class="linenos">394</span><span class="sd">            &quot;answer&quot;: &quot;&lt;generated answer&gt;&quot;</span>
+<span class="linenos">395</span><span class="sd">        }</span>
+<span class="linenos">396</span><span class="sd">    :return: Flask response as JSON with generated answer or an error msg.</span>
+<span class="linenos">397</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">398</span>    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Chat API.&quot;</span><span class="p">)</span>
+<span class="linenos">399</span>    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;OPTIONS&quot;</span><span class="p">:</span>
+<span class="linenos">400</span>        <span class="c1"># This is the preflight request</span>
+<span class="linenos">401</span>        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">204</span>
+<span class="linenos">402</span>
+<span class="linenos">403</span>    <span class="k">def</span><span class="w"> </span><span class="nf">error_response</span><span class="p">(</span>
+<span class="linenos">404</span>        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status_code</span><span class="p">:</span> <span class="nb">int</span>
+<span class="linenos">405</span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="linenos">406</span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Helper to format error responses consistently.&quot;&quot;&quot;</span>
+<span class="linenos">407</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Error response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<span class="linenos">408</span>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">},</span> <span class="n">status_code</span>
+<span class="linenos">409</span>
+<span class="linenos">410</span>    <span class="n">response_data</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="linenos">411</span>    <span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="linenos">412</span>
+<span class="linenos">413</span>    <span class="k">try</span><span class="p">:</span>
+<span class="linenos">414</span>        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span> <span class="ow">or</span> <span class="p">{}</span>
+<span class="linenos">415</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received request data: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="linenos">416</span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">417</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Invalid JSON in request. </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos">418</span>        <span class="n">response_data</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">error_response</span><span class="p">(</span>
+<span class="linenos">419</span>            <span class="s2">&quot;Invalid JSON payload&quot;</span><span class="p">,</span> <span class="mi">400</span>
+<span class="linenos">420</span>        <span class="p">)</span>
+<span class="linenos">421</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">422</span>        <span class="n">question</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;question&quot;</span><span class="p">)</span>
+<span class="linenos">423</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">question</span><span class="p">:</span>
+<span class="linenos">424</span>            <span class="n">response_data</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">error_response</span><span class="p">(</span>
+<span class="linenos">425</span>                <span class="s2">&quot;No question provided&quot;</span><span class="p">,</span> <span class="mi">400</span>
+<span class="linenos">426</span>            <span class="p">)</span>
+<span class="linenos">427</span>        <span class="k">else</span><span class="p">:</span>
+<span class="linenos">428</span>            <span class="k">try</span><span class="p">:</span>
+<span class="linenos">429</span>                <span class="n">contexts</span> <span class="o">=</span> <span class="n">retrieve_context</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+<span class="linenos">430</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Contexts retrieved: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">contexts</span><span class="p">)</span>
+<span class="linenos">431</span>            <span class="k">except</span> <span class="n">PineconeException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">432</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Pinecone query failed.&quot;</span><span class="p">)</span>
+<span class="linenos">433</span>                <span class="n">response_data</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">error_response</span><span class="p">(</span>
+<span class="linenos">434</span>                    <span class="sa">f</span><span class="s2">&quot;Pinecone error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">500</span>
+<span class="linenos">435</span>                <span class="p">)</span>
+<span class="linenos">436</span>            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">437</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Unexpected error during context retrieval.&quot;</span><span class="p">)</span>
+<span class="linenos">438</span>                <span class="n">response_data</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">error_response</span><span class="p">(</span>
+<span class="linenos">439</span>                    <span class="sa">f</span><span class="s2">&quot;Context retrieval error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">500</span>
+<span class="linenos">440</span>                <span class="p">)</span>
+<span class="linenos">441</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">442</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Pinecone results: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">contexts</span><span class="p">)</span>
+<span class="linenos">443</span>                <span class="n">combined_context</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+<span class="linenos">444</span>                    <span class="sa">f</span><span class="s2">&quot;Q: </span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">A: </span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">contexts</span>
+<span class="linenos">445</span>                <span class="p">)</span>
+<span class="linenos">446</span>
+<span class="linenos">447</span>                <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+<span class="linenos">448</span>                    <span class="s2">&quot;You are a helpful assistant for Circassian DNA.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos">449</span>                    <span class="s2">&quot;First, check the knowledge base entries below.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos">450</span>                    <span class="s2">&quot;If you find a relevant answer, use it directly.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos">451</span>                    <span class="s2">&quot;If the knowledge base does not have a clear answer, &quot;</span>
+<span class="linenos">452</span>                    <span class="s2">&quot;you may use your own knowledge.</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos">453</span>                    <span class="s2">&quot;Always prefer the knowledge base if there is a match.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+<span class="linenos">454</span>                    <span class="sa">f</span><span class="s2">&quot;Knowledge base: </span><span class="si">{</span><span class="n">combined_context</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+<span class="linenos">455</span>                    <span class="sa">f</span><span class="s2">&quot;Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="linenos">456</span>                    <span class="s2">&quot;Answer:&quot;</span>
+<span class="linenos">457</span>                <span class="p">)</span>
+<span class="linenos">458</span>
+<span class="linenos">459</span>                <span class="k">try</span><span class="p">:</span>
+<span class="linenos">460</span>                    <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<span class="linenos">461</span>                        <span class="n">model</span><span class="o">=</span><span class="n">MODEL</span><span class="p">,</span>
+<span class="linenos">462</span>                        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+<span class="linenos">463</span>                    <span class="p">)</span>
+<span class="linenos">464</span>                    <span class="n">answer</span> <span class="o">=</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+<span class="linenos">465</span>                <span class="k">except</span> <span class="n">OpenAIError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">466</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;OpenAI API request failed.&quot;</span><span class="p">)</span>
+<span class="linenos">467</span>                    <span class="n">response_data</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">error_response</span><span class="p">(</span>
+<span class="linenos">468</span>                        <span class="sa">f</span><span class="s2">&quot;OpenAI API error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">500</span>
+<span class="linenos">469</span>                    <span class="p">)</span>
+<span class="linenos">470</span>                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">471</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Unexpected error during OpenAI request.&quot;</span><span class="p">)</span>
+<span class="linenos">472</span>                    <span class="n">response_data</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">error_response</span><span class="p">(</span>
+<span class="linenos">473</span>                        <span class="sa">f</span><span class="s2">&quot;Answer generation error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="mi">500</span>
+<span class="linenos">474</span>                    <span class="p">)</span>
+<span class="linenos">475</span>                <span class="k">else</span><span class="p">:</span>
+<span class="linenos">476</span>                    <span class="n">response_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">answer</span><span class="p">}</span>
+<span class="linenos">477</span>
+<span class="linenos">478</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response_data</span><span class="p">),</span> <span class="n">status_code</span>
+<span class="linenos">479</span>
+<span class="linenos">480</span>
+<span class="linenos">481</span><span class="c1"># -------------------</span>
+<span class="linenos">482</span><span class="c1"># Entrypoint</span>
+<span class="linenos">483</span><span class="c1"># -------------------</span>
+<span class="linenos">484</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">485</span>
+<span class="linenos">486</span>    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="linenos">487</span>
+<span class="linenos">488</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;build&quot;</span><span class="p">:</span>
+<span class="linenos">489</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">PINECONE_API_KEY</span><span class="p">:</span>
+<span class="linenos">490</span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;PINECONE_API_KEY is required for index build.&quot;</span><span class="p">)</span>
+<span class="linenos">491</span>        <span class="n">pc</span> <span class="o">=</span> <span class="n">Pinecone</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">PINECONE_API_KEY</span><span class="p">)</span>
+<span class="linenos">492</span>        <span class="n">build_index</span><span class="p">(</span><span class="n">pc</span><span class="p">)</span>
+<span class="linenos">493</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">494</span>        <span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PORT&quot;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
+<span class="linenos">495</span>        <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">combine_jsons.py</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="ch">#!/usr/bin/env python3</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">  4</span><span class="sd">Copyright (C) 2025 Mukharbek Organokov</span>
+<span class="linenos">  5</span><span class="sd">Website: www.circassiandna.com</span>
+<span class="linenos">  6</span>
+<span class="linenos">  7</span><span class="sd">This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos">  8</span><span class="sd">it under the terms of the GNU General Public License as published by</span>
+<span class="linenos">  9</span><span class="sd">the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos"> 10</span><span class="sd">(at your option) any later version.</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span><span class="sd">This program is distributed in the hope that it will be useful,</span>
+<span class="linenos"> 13</span><span class="sd">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos"> 14</span><span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos"> 15</span><span class="sd">GNU General Public License for more details.</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="sd">You should have received a copy of the GNU General Public License</span>
+<span class="linenos"> 18</span><span class="sd">along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="linenos"> 19</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 20</span>
+<span class="linenos"> 21</span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="linenos"> 22</span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos"> 23</span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="linenos"> 24</span>
+<span class="linenos"> 25</span><span class="kn">from</span><span class="w"> </span><span class="nn">utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_module_logger</span><span class="p">,</span> <span class="n">remove_trailing_commas</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="n">LOGGER</span> <span class="o">=</span> <span class="n">get_module_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="k">def</span><span class="w"> </span><span class="nf">check_subdirs</span><span class="p">(</span><span class="n">input_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">required_subdirs</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos"> 31</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 32</span><span class="sd">    Checks directory structure.</span>
+<span class="linenos"> 33</span><span class="sd">    :param input_dir: An input directory. Default is data.</span>
+<span class="linenos"> 34</span><span class="sd">    :param required_subdirs: A list of required subdirectories.</span>
+<span class="linenos"> 35</span><span class="sd">    :return: Boolean.</span>
+<span class="linenos"> 36</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 37</span>    <span class="n">missing_subdirs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 38</span>    <span class="n">dirpath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+<span class="linenos"> 41</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Directory does not exist: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">input_dir</span><span class="p">)</span>
+<span class="linenos"> 42</span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos"> 43</span>
+<span class="linenos"> 44</span>    <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">required_subdirs</span><span class="p">:</span>
+<span class="linenos"> 45</span>        <span class="n">subdir</span> <span class="o">=</span> <span class="n">dirpath</span> <span class="o">/</span> <span class="n">sub</span>
+<span class="linenos"> 46</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">subdir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+<span class="linenos"> 47</span>            <span class="n">missing_subdirs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subdir</span><span class="p">)</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span>    <span class="k">if</span> <span class="n">missing_subdirs</span><span class="p">:</span>
+<span class="linenos"> 50</span>        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">missing_subdirs</span><span class="p">:</span>
+<span class="linenos"> 51</span>            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Missing required subdir: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="linenos"> 52</span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="linenos"> 53</span>
+<span class="linenos"> 54</span>    <span class="k">return</span> <span class="kc">True</span>
+<span class="linenos"> 55</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="k">def</span><span class="w"> </span><span class="nf">combine_json_files</span><span class="p">(</span>
+<span class="linenos"> 58</span>    <span class="n">input_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="linenos"> 59</span>    <span class="n">required_subdirs</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="linenos"> 60</span>    <span class="n">input_filenames</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<span class="linenos"> 61</span>    <span class="n">output_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="linenos"> 62</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 64</span><span class="sd">    Combine multiple JSON dict files from a directory into one JSON file.</span>
+<span class="linenos"> 65</span><span class="sd">    :param input_dir: Directory containing JSON files.</span>
+<span class="linenos"> 66</span><span class="sd">    :param input_filenames: List of JSON file names to combine.</span>
+<span class="linenos"> 67</span><span class="sd">    :param output_file: Path to the output combined JSON file.</span>
+<span class="linenos"> 68</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos"> 69</span>    <span class="n">combined_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="linenos"> 70</span>    <span class="k">if</span> <span class="n">check_subdirs</span><span class="p">(</span><span class="n">input_dir</span><span class="o">=</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">required_subdirs</span><span class="o">=</span><span class="n">required_subdirs</span><span class="p">):</span>
+<span class="linenos"> 71</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;All required subdirectories exist!&quot;</span><span class="p">)</span>
+<span class="linenos"> 72</span>
+<span class="linenos"> 73</span>        <span class="n">dirpath</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span>
+<span class="linenos"> 74</span>        <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">required_subdirs</span><span class="p">:</span>
+<span class="linenos"> 75</span>            <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">input_filenames</span><span class="p">:</span>
+<span class="linenos"> 76</span>                <span class="n">filepath</span> <span class="o">=</span> <span class="n">dirpath</span> <span class="o">/</span> <span class="n">sub</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s2">.json&quot;</span>
+<span class="linenos"> 77</span>                <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+<span class="linenos"> 78</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;File not found, skipping: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+<span class="linenos"> 79</span>                    <span class="k">continue</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span>                <span class="k">try</span><span class="p">:</span>
+<span class="linenos"> 82</span>                    <span class="n">read_raw_text</span> <span class="o">=</span> <span class="n">filepath</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="linenos"> 83</span>                    <span class="n">fixed_text</span> <span class="o">=</span> <span class="n">remove_trailing_commas</span><span class="p">(</span><span class="n">read_raw_text</span><span class="p">)</span>
+<span class="linenos"> 84</span>                    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">fixed_text</span><span class="p">)</span>
+<span class="linenos"> 85</span>                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="linenos"> 86</span>                        <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+<span class="linenos"> 87</span>                            <span class="s2">&quot;Skipping </span><span class="si">%s</span><span class="s2">: not a JSON object at top level&quot;</span><span class="p">,</span>
+<span class="linenos"> 88</span>                            <span class="n">filepath</span><span class="p">,</span>
+<span class="linenos"> 89</span>                        <span class="p">)</span>
+<span class="linenos"> 90</span>                        <span class="k">continue</span>
+<span class="linenos"> 91</span>                    <span class="n">combined_data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="linenos"> 92</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Added </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">)</span>
+<span class="linenos"> 93</span>                <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos"> 94</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Invalid JSON in </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos"> 95</span>                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos"> 96</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error reading </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="linenos"> 97</span>
+<span class="linenos"> 98</span>            <span class="k">if</span> <span class="n">combined_data</span><span class="p">:</span>
+<span class="linenos"> 99</span>                <span class="k">try</span><span class="p">:</span>
+<span class="linenos">100</span>                    <span class="c1"># output_dir = os.path.dirname(output_file)</span>
+<span class="linenos">101</span>                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">102</span>                        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span>
+<span class="linenos">103</span>                            <span class="n">combined_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span>
+<span class="linenos">104</span>                        <span class="p">)</span>
+<span class="linenos">105</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Combined JSON saved to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+<span class="linenos">106</span>                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="linenos">107</span>                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+<span class="linenos">108</span>                        <span class="s2">&quot;Failed to write output file </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">err</span>
+<span class="linenos">109</span>                    <span class="p">)</span>
+<span class="linenos">110</span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos">111</span>                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No valid JSON data to write.&quot;</span><span class="p">)</span>
+<span class="linenos">112</span>
+<span class="linenos">113</span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos">114</span>        <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+<span class="linenos">115</span>            <span class="s2">&quot;Aborting combine: required subdirectories </span><span class="si">%s</span><span class="s2"> not found in </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="linenos">116</span>            <span class="n">required_subdirs</span><span class="p">,</span>
+<span class="linenos">117</span>            <span class="n">input_dir</span><span class="p">,</span>
+<span class="linenos">118</span>        <span class="p">)</span>
+<span class="linenos">119</span>
+<span class="linenos">120</span>
+<span class="linenos">121</span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos">122</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">123</span><span class="sd">    Main entry point for the script.</span>
+<span class="linenos">124</span><span class="sd">    - Looks for explicit list of `.json` files in a INPUT_DIR directory.</span>
+<span class="linenos">125</span><span class="sd">    - Expects each file to contain a JSON object (dict at top-level).</span>
+<span class="linenos">126</span><span class="sd">    - Handles missing files and invalid JSON gracefully.</span>
+<span class="linenos">127</span><span class="sd">    - Merges all dicts into one combined dict.</span>
+<span class="linenos">128</span><span class="sd">    - Saves the result into OUTPUT_FILE.</span>
+<span class="linenos">129</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">130</span>
+<span class="linenos">131</span>    <span class="n">input_dir</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
+<span class="linenos">132</span>    <span class="n">required_subdirs</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;en&quot;</span><span class="p">,</span> <span class="s2">&quot;ru&quot;</span><span class="p">]</span>
+<span class="linenos">133</span>    <span class="n">input_filenames</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">134</span>        <span class="s2">&quot;base&quot;</span><span class="p">,</span>
+<span class="linenos">135</span>        <span class="s2">&quot;ftdna&quot;</span><span class="p">,</span>
+<span class="linenos">136</span>        <span class="s2">&quot;order&quot;</span><span class="p">,</span>
+<span class="linenos">137</span>        <span class="s2">&quot;hg&quot;</span><span class="p">,</span>
+<span class="linenos">138</span>        <span class="s2">&quot;archeology&quot;</span><span class="p">,</span>
+<span class="linenos">139</span>        <span class="s2">&quot;history&quot;</span><span class="p">,</span>
+<span class="linenos">140</span>        <span class="s2">&quot;projects&quot;</span><span class="p">,</span>
+<span class="linenos">141</span>        <span class="s2">&quot;tree&quot;</span><span class="p">,</span>
+<span class="linenos">142</span>        <span class="s2">&quot;genealogy&quot;</span><span class="p">,</span>
+<span class="linenos">143</span>        <span class="s2">&quot;general&quot;</span><span class="p">,</span>
+<span class="linenos">144</span>        <span class="s2">&quot;miscellaneous&quot;</span><span class="p">,</span>
+<span class="linenos">145</span>    <span class="p">]</span>
+<span class="linenos">146</span>    <span class="n">output_path</span> <span class="o">=</span> <span class="s2">&quot;knowledgebase.json&quot;</span>
+<span class="linenos">147</span>    <span class="n">combine_json_files</span><span class="p">(</span>
+<span class="linenos">148</span>        <span class="n">input_dir</span><span class="p">,</span> <span class="n">required_subdirs</span><span class="p">,</span> <span class="n">input_filenames</span><span class="p">,</span> <span class="n">output_path</span>
+<span class="linenos">149</span>    <span class="p">)</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="linenos">153</span>    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">lambda_handler.py</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/usr/bin/env python</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">Copyright (C) 2025 Mukharbek Organokov</span>
+<span class="linenos"> 5</span><span class="sd">Website: www.circassiandna.com</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="sd">This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos"> 8</span><span class="sd">it under the terms of the GNU General Public License as published by</span>
+<span class="linenos"> 9</span><span class="sd">the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos">10</span><span class="sd">(at your option) any later version.</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="sd">This program is distributed in the hope that it will be useful,</span>
+<span class="linenos">13</span><span class="sd">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos">14</span><span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos">15</span><span class="sd">GNU General Public License for more details.</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="sd">You should have received a copy of the GNU General Public License</span>
+<span class="linenos">18</span><span class="sd">along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="linenos">19</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kn">from</span><span class="w"> </span><span class="nn">apig_wsgi</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_lambda_handler</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="kn">from</span><span class="w"> </span><span class="nn">app</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="c1"># Create the AWS Lambda handler</span>
+<span class="linenos">26</span><span class="c1"># This produces a function with signature (event, context) -&gt; dict</span>
+<span class="linenos">27</span><span class="c1"># Works for both API Gateway REST (v1) and HTTP API (v2) events.</span>
+<span class="linenos">28</span><span class="n">handler</span> <span class="o">=</span> <span class="n">make_lambda_handler</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="c1"># Note: The above handler is a simplified version using apig_wsgi.</span>
+<span class="linenos">31</span><span class="c1"># Custom handler with awsgi2; TODO: debug</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="c1"># import json</span>
+<span class="linenos">34</span><span class="c1"># from typing import Any, Dict, Mapping</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="c1"># import awsgi2</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="c1"># from app import app</span>
+<span class="linenos">39</span><span class="c1"># from utils import get_module_logger</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="c1"># LOGGER = get_module_logger(__name__)</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="c1"># def handler(event: Dict[str, Any], context: Any) -&gt; Mapping[str, Any]:</span>
+<span class="linenos">45</span><span class="c1">#     &quot;&quot;&quot;</span>
+<span class="linenos">46</span><span class="c1">#     AWS Lambda entry point for the Flask application.</span>
+<span class="linenos">47</span><span class="c1">#     This function acts as a bridge between AWS Lambda and the Flask app</span>
+<span class="linenos">48</span><span class="c1">#     using the `awsgi2.response` function to handle API Gateway events.</span>
+<span class="linenos">49</span><span class="c1">#     :param event: The API Gateway event dictionary.</span>
+<span class="linenos">50</span><span class="c1">#     :param context: The Lambda context object, which contains runtime info.</span>
+<span class="linenos">51</span><span class="c1">#     :return: A response dictionary formatted for API Gateway.</span>
+<span class="linenos">52</span><span class="c1">#     &quot;&quot;&quot;</span>
+<span class="linenos">53</span><span class="c1">#     try:</span>
+<span class="linenos">54</span><span class="c1">#         LOGGER.info(&quot;Received event: %s&quot;, event)</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="c1">#         # # Detect API Gateway version</span>
+<span class="linenos">57</span><span class="c1">#         # if &quot;version&quot; in event and event[&quot;version&quot;] == &quot;2.0&quot;:</span>
+<span class="linenos">58</span><span class="c1">#         #     is_v2 = True  # HTTP API</span>
+<span class="linenos">59</span><span class="c1">#         # elif &quot;httpMethod&quot; in event:</span>
+<span class="linenos">60</span><span class="c1">#         #     is_v2 = False  # REST API</span>
+<span class="linenos">61</span><span class="c1">#         # else:</span>
+<span class="linenos">62</span><span class="c1">#         #     raise ValueError(&quot;Unknown API Gateway event type&quot;)</span>
+<span class="linenos">63</span>
+<span class="linenos">64</span><span class="c1">#         # Let awsgi2 auto-detect API Gateway version</span>
+<span class="linenos">65</span><span class="c1">#         return awsgi2.response(app, event, context)</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="c1">#     except Exception as exc:</span>
+<span class="linenos">68</span><span class="c1">#         # Exception captures stack trace in CloudWatch.</span>
+<span class="linenos">69</span><span class="c1">#         LOGGER.exception(&quot;Unhandled exception in Lambda handler.&quot;)</span>
+<span class="linenos">70</span>
+<span class="linenos">71</span><span class="c1">#         # Return a JSON-formatted 500 error for API Gateway</span>
+<span class="linenos">72</span><span class="c1">#         err_msg = &quot;An unexpected error occurred.&quot;</span>
+<span class="linenos">73</span><span class="c1">#         return {</span>
+<span class="linenos">74</span><span class="c1">#             &quot;statusCode&quot;: 500,</span>
+<span class="linenos">75</span><span class="c1">#             &quot;headers&quot;: {&quot;Content-Type&quot;: &quot;application/json&quot;},</span>
+<span class="linenos">76</span><span class="c1">#             &quot;body&quot;: json.dumps(</span>
+<span class="linenos">77</span><span class="c1">#                 {</span>
+<span class="linenos">78</span><span class="c1">#                     &quot;error&quot;: &quot;Internal Server Error&quot;,</span>
+<span class="linenos">79</span><span class="c1">#                     &quot;message&quot;: (</span>
+<span class="linenos">80</span><span class="c1">#                         str(exc) if app.debug else err_msg</span>
+<span class="linenos">81</span><span class="c1">#                     ),</span>
+<span class="linenos">82</span><span class="c1">#                 }</span>
+<span class="linenos">83</span><span class="c1">#             ),</span>
+<span class="linenos">84</span><span class="c1">#         }</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">utils.py</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="ch">#!/usr/bin/env python</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos"> 4</span><span class="sd">Copyright (C) 2025 Mukharbek Organokov</span>
+<span class="linenos"> 5</span><span class="sd">Website: www.circassiandna.com</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="sd">This program is free software: you can redistribute it and/or modify</span>
+<span class="linenos"> 8</span><span class="sd">it under the terms of the GNU General Public License as published by</span>
+<span class="linenos"> 9</span><span class="sd">the Free Software Foundation, either version 3 of the License, or</span>
+<span class="linenos">10</span><span class="sd">(at your option) any later version.</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="sd">This program is distributed in the hope that it will be useful,</span>
+<span class="linenos">13</span><span class="sd">but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="linenos">14</span><span class="sd">MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="linenos">15</span><span class="sd">GNU General Public License for more details.</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="sd">You should have received a copy of the GNU General Public License</span>
+<span class="linenos">18</span><span class="sd">along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="linenos">19</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="linenos">22</span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="linenos">23</span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="k">def</span><span class="w"> </span><span class="nf">remove_trailing_commas</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="linenos">27</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">28</span><span class="sd">    Remove trailing commas before } or ] in a JSON string.</span>
+<span class="linenos">29</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">30</span>    <span class="c1"># Remove comma before }</span>
+<span class="linenos">31</span>    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;,\s*}&quot;</span><span class="p">,</span> <span class="s2">&quot;}&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="linenos">32</span>    <span class="c1"># Remove comma before ]</span>
+<span class="linenos">33</span>    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;,\s*]&quot;</span><span class="p">,</span> <span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="linenos">34</span>    <span class="k">return</span> <span class="n">text</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="k">def</span><span class="w"> </span><span class="nf">get_module_logger</span><span class="p">(</span><span class="n">mod_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
+<span class="linenos">38</span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="linenos">39</span><span class="sd">    Create and configure a logger for multi-module usage.</span>
+<span class="linenos">40</span><span class="sd">    :param mod_name: The name of the logger. If None, the root logger is used.</span>
+<span class="linenos">41</span><span class="sd">    :return: A configured logger instance.</span>
+<span class="linenos">42</span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos">43</span>    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">mod_name</span><span class="p">)</span>
+<span class="linenos">44</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+<span class="linenos">45</span>        <span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+<span class="linenos">46</span>        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span>
+<span class="linenos">47</span>            <span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(name)-12s</span><span class="s2"> </span><span class="si">%(levelname)-8s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+<span class="linenos">48</span>        <span class="p">)</span>
+<span class="linenos">49</span>        <span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+<span class="linenos">50</span>        <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+<span class="linenos">51</span>        <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span>    <span class="k">return</span> <span class="n">logger</span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="project-structure.html" class="btn btn-neutral float-left" title="Project structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deps.html" class="btn btn-neutral float-right" title="Dependencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Mukharbek Organokov.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

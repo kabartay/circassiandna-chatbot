@@ -1,0 +1,14 @@
+/* opt-in: no wrapping, horizontal scroll */
+.rst-content .highlight.code-nowrap pre,
+.docutils .highlight.code-nowrap pre {
+    white-space: pre !important;
+    overflow-x: auto;
+}
+
+/* opt-in: cap vertical size with scroll */
+.rst-content .highlight.code-vscroll,
+.docutils .highlight.code-vscroll {
+    max-height: 40rem;
+    /* adjust */
+    overflow: auto;
+}
